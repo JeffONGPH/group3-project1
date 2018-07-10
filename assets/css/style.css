@@ -1,0 +1,54 @@
+* {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    
+    }
+
+    html{
+        font-size:62.5%;
+        
+    }
+
+    body{
+        font-size:1.6rem;
+    }
+
+.wrapper{
+    width:90%;
+    margin:0 auto;
+}
+
+/* start of HEADING STYLES */
+
+.container{
+    position:relative;
+}
+
+.heading{
+    background-image: url("../images/hotel-view.jpg");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size:cover;
+    min-height:500px;
+}
+
+.navbar{
+    padding:20px;
+    position:absolute;
+    top:20px;
+    width:100%;
+    /* padding-top:20px; */
+}
+
+
+
+.far{
+    color:black;
+}
+
+/* end of HEADING STYLES */
+
+
+/* START OF SEARCHBOXES SECTION */
+.panel{
+    padding:30px;
+}

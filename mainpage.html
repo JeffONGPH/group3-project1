@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="assets/javascript/app.js"></script>
+</head>
+
+<body>
+
+
+    <header class="heading">
+        <div class="container wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+                <h1 class="navbar-brand" id="companyLogo">Logo</h1>
+
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+
+
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#">About Us
+                            <span class="sr-only">(current)</span>
+                        </a>
+
+                        <a class="nav-item nav-link active" href="#">Contact Us
+                            <span class="sr-only">(current)</span>
+                        </a>
+
+                        <a class="nav-item nav-link" href="#">
+                            <i class="far fa-star"></i> Favourites</a>
+                        <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+                    </div>
+
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+
+
+    <section class="searchBoxes wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h2>Select Your Destination</h2>
+                            <p>Find your perfect hotel everywhere in the world</p>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <!-- row1   -->
+                                <div class="col-md-12">
+
+                                    <div class="card mb-4 p-4">
+                                        <!-- CARD   -->
+                                        <div class="card-body">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <!-- input 1 -->
+                                                    <div class="col-md-12">
+                                                        <label for="destination">Airport Code:</label>
+                                                        <input class="form-control" id="destination" type="text" value="LAX">
+                                                    </div>
+                                                </div>
+                                                <!-- end input 1 -->
+
+                                                <div class="form-group row">
+                                                    <!-- input 2 -->
+                                                    <div class="col-md-12">
+                                                        <label for="checkInDate">Check In Date:</label>
+                                                        <div class="well">
+                                                            <input type="text" class="form-control" id="datetimepicker1">
+
+                                                        </div>
+                                                        <!-- <input class="form-control" id="checkInDate" type="text" value="2018-08-15"> -->
+                                                    </div>
+                                                </div>
+                                                <!-- end input 2 -->
+
+                                                <div class="form-group row">
+                                                    <!-- input 3 -->
+                                                    <div class="col-md-12">
+                                                        <label for="checkOutDate">Check Out Date:</label>
+                                                        <div class="well">
+                                                            <input type="text" class="form-control" id="datetimepicker2">
+
+                                                        </div>
+                                                        <!-- <input class="form-control" id="checkOutDate" type="text" value="2018-08-16"> -->
+                                                    </div>
+                                                </div>
+                                                <!-- end input 3 -->
+
+
+
+                                                <div class="form-group row">
+                                                    <!-- form ROW 5 -->
+                                                    <div class="col-md-12">
+                                                        <button type="button" class="btn btn-outline-success" id="btnSubmit">Search</button>
+                                                    </div>
+                                                </div>
+                                                <!-- form ROW 5 -->
+
+                                            </form>
+                                        </div>
+                                        <!-- end CARD BODY  -->
+                                    </div>
+                                    <!-- end CARD   -->
+                                </div>
+                                <!-- end col1 large   -->
+                            </div>
+                            <!-- end row1  -->
+                        </div>
+                        <!-- end panel body  -->
+                    </div>
+                    <!-- end panel-info  -->
+                </div>
+                <!-- end top col  -->
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- START OF RESULTS PAGE -->
+
+    <section class="displayResults ">
+
+
+    </section>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datepicker({
+                format: "yyyy-mm-dd"
+            });
+        });
+
+        //REDO CALENDAR FOR CHECK-OUT DATE
+        $(function () {
+            $('#datetimepicker2').datepicker({
+                format: "yyyy-mm-dd"
+            });
+        });
+    </script>
+</body>
+
+
+
+</html>
