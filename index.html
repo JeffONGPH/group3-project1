@@ -22,14 +22,16 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
 
     <!-- Javascript -->
-    <script src="assets/javascript/app.js"></script>
+    <!-- <script src="assets/javascript/app.js"></script> -->
 </head>
 
 <body>
 
+    <!-- START OF MAIN PAGE -->
+
 
     <header class="heading">
-        <div class="container">
+        <div class="container navContainer">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand">appName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -101,7 +103,7 @@
                             </div>
 
                             <div class="col-lg-6 error-message">
-                                <p>*Insert error message here*</p>
+                                <p id="error">*Insert error message here*</p>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -155,7 +157,7 @@
                                                 <div class="form-group row">
                                                     <!-- form ROW 5 -->
                                                     <div class="col-md-12">
-                                                        <button type="button" class="btn btn-outline-success" id="btnSubmit">Search</button>
+                                                        <button type="button" class="btn btn-outline-success pageButtons" id="btnSubmit">Search</button>
                                                     </div>
                                                 </div>
                                                 <!-- form ROW 5 -->
@@ -178,6 +180,10 @@
             </div>
         </div>
     </section>
+
+
+
+
 
 
     <!-- START OF RESULTS PAGE -->
@@ -254,6 +260,20 @@
                 <!-- end panel-success -->
             </div>
         </div>
+
+    </section>
+
+
+
+
+    <!-- START OF VIEW PREVIOUS BOOKING SECTION -->
+
+    <section class="myBookings">
+
+
+
+
+
     </section>
 
 
@@ -281,6 +301,17 @@
 
     <!-- START OF CONFIRMATION OF PAYMENT PAGE -->
     <section class="confirmationPage">
+        <div class="container">
+            <div class="card confirmCard">
+                <h5 class="card-header confirmHeading">You just made a booking!</h5>
+                <div class="card-body">
+                    <h5 class="card-title processMsg">We are processing your booking.</h5>
+                    <p class="card-text processPara">Kindly be patient while we do so. It may take 10 minutes or more to complete this process. </p>
+                    <p class="card-text processPara">Page not refreshing? Please check your email for booking information.</p>
+                    <a href="#" class="btn btn-primary pageButtons">Search Again</a>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -302,19 +333,6 @@
 
 
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

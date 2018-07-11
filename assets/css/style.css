@@ -4,22 +4,29 @@
     }
 
     html{
-        font-size:62.5%;
+    font-size:62.5%;
         
     }
 
     body{
-        font-size:1.6rem;
+    font-size:1.6rem;
     }
 
-.wrapper{
-    width:90%;
+    .wrapper{
     margin:0 auto;
 }
 
-/* start of HEADING STYLES */
+/* HEADING STYLE BEGIN */
+
+.navContainer{
+    min-width:71%;
+}
 
 .container{
+    position:relative;
+}
+
+header{
     position:relative;
 }
 
@@ -28,27 +35,148 @@
     background-repeat: no-repeat;
     background-position: right;
     background-size:cover;
-    min-height:500px;
+    min-width:113%;
+    height:500px;
 }
 
 .navbar{
     padding:20px;
     position:absolute;
     top:20px;
-    width:100%;
-    /* padding-top:20px; */
+    left:2px;
+    width:87%;
+
+}
+
+.far, .fas{
+    color:rgba(0,0,0,.5);
 }
 
 
 
-.far{
-    color:black;
+/* subheading styles */
+
+
+
+.subHeading{
+    position:absolute;
+    top:50%;
+    left:46%;
+    transform: translate(-60%, -40%);
 }
 
-/* end of HEADING STYLES */
+.jumbotron{
+    background-color:transparent !important;
+    
+}
+
+.welcomeMsg{
+    text-align: center;
+    border:5px solid #ffffff !important;
+    border-color:  #ffffff !important;
+    color:  #ffffff !important;
+    padding:5px;
+    font-size:3rem;
+    line-height: 50px;
+    text-transform: uppercase;
+    font-weight:bolder;
+
+}
+
+.lead{
+    font-family: 'Roboto', sans-serif;
+    color:  #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align:center;
+}
+
+.nav-item{
+    margin-right:50px;
+}
 
 
-/* START OF SEARCHBOXES SECTION */
+.pageButtons{
+    margin-bottom:8px;
+    margin-right:10px;
+    background-color:#2ecc71;
+    font-family: 'Lato', sans-serif;
+    border:1px solid #2ecc71;
+
+}
+
+.pageButtons{
+    font-family: 'Lato', sans-serif;
+    color:  #ffffff !important;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+
+    
+    
+}
+
+
+/* HEADING STYLE ENDS */
+
+
+
+
+
+
+
+/* SEARCHBOXES STYLE BEGINS */
 .panel{
-    padding:30px;
+    margin-top:80px;
 }
+
+
+
+
+
+
+/* CONFIRMATION PAGE STYLES BEGINS */
+.confirmCard{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.processPara{
+    margin-bottom:25px;
+    font-size:1.7rem;
+}
+.confirmHeading{
+    color: white;
+    font-size: 2rem;
+    background-color: #2ecc71;
+    padding: 20px;
+    text-align: center;
+}
+
+.processMsg{
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+/* FOOTER STYLE BEGINS */
+footer, .footerCard{
+background-color:#222222;
+}
+
+.footerIcon, .card-header{
+    color:#ffffff;
+}
+
+
+
+
