@@ -1,10 +1,376 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Bunch of Paragraphs</h1>
-<p>This is a paragraph.</p>
-<p>This is a paragraph.</p>
-<p>This is a paragraph.</p>
 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BitHotels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <!-- FONT AWESOME LINK -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <!-- CSS for CALENDAR -->
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+
+    <!-- CSS FOR WEB APP -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/resetMain.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
+
+    <!-- Javascript -->
+    <script src="assets/javascript/app.js"></script>
+</head>
+
+<body>
+
+
+    <header class="heading">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand">appName</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="far fa-star"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </nav>
+
+        </div>
+
+        </div>
+
+        </nav>
+        </div>
+
+        <section class="subHeading">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h2 class="display-4 welcomeMsg">Welcome to appName</h2>
+                    <p class="lead">Easy. Convenient. Hassle-Free Bitcoin Payments</p>
+                    <p class="text-center justify-content-space-between">
+                        <a class="btn btn-primary btn-lg pageButtons" role="button">Get Started</a>
+                        <a class="btn btn-primary btn-lg pageButtons" role="button">My Booking</a>
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+    </header>
+
+
+
+    <section class="searchBoxes">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-success">
+                        <div class="row">
+                            <div class="col-lg-6 panel-heading">
+                                <!-- <div class="panel-heading"> -->
+                                <h2>Select Your Destination</h2>
+                                <p>Find your perfect hotel, anywhere in the world</p>
+                            </div>
+
+                            <div class="col-lg-6 error-message">
+                                <p>*Insert error message here*</p>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <!-- row1   -->
+                                <div class="col-md-12">
+
+                                    <div class="card mb-4 p-4">
+                                        <!-- CARD   -->
+                                        <div class="card-body">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <!-- input 1 -->
+                                                    <div class="col-md-12">
+                                                        <label for="destination">Airport Code:</label>
+                                                        <input class="form-control" id="destination" type="text" value="LAX">
+                                                    </div>
+                                                </div>
+                                                <!-- end input 1 -->
+
+                                                <div class="form-group row">
+                                                    <!-- input 2 -->
+                                                    <div class="col-md-12">
+                                                        <label for="checkInDate">Check In Date:</label>
+                                                        <div class="well">
+                                                            <input type="text" class="form-control" id="datetimepicker1">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- end input 2 -->
+
+                                                <div class="form-group row">
+                                                    <!-- input 3 -->
+                                                    <div class="col-md-12">
+                                                        <label for="checkOutDate">Check Out Date:</label>
+                                                        <div class="well">
+                                                            <input type="text" class="form-control" id="datetimepicker2">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- end input 3 -->
+
+
+
+                                                <div class="form-group row">
+                                                    <!-- form ROW 5 -->
+                                                    <div class="col-md-12">
+                                                        <button type="button" class="btn btn-outline-success" id="btnSubmit">Search</button>
+                                                    </div>
+                                                </div>
+                                                <!-- form ROW 5 -->
+
+                                            </form>
+                                        </div>
+                                        <!-- end CARD BODY  -->
+                                    </div>
+                                    <!-- end CARD   -->
+                                </div>
+                                <!-- end col1 large   -->
+                            </div>
+                            <!-- end row1  -->
+                        </div>
+                        <!-- end panel body  -->
+                    </div>
+                    <!-- end panel-info  -->
+                </div>
+                <!-- end top col  -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- START OF RESULTS PAGE -->
+
+    <section class="displayResults ">
+        <div class="container">
+            <div class="col-md-10">
+                <!-- col2 large -->
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h4>
+                                    <b>Click on Hotel for More Info</b>
+                                </h4>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-outline-primary" id="btnClear">Clear</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-outline-info" id="btnFireBase">Refresh</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <table class="table table-sm table-hover" id="hotelTable">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center optionSelected" scope="col">Select</th>
+                                                    <th class="text-center hotelName" scope="col">Hotel</th>
+                                                    <th class="text-center hotelAdd" scope="col">Address</th>
+                                                    <th class="text-center amenities" scope="col">Amenities</th>
+                                                    <th class="text-center dollarVal" scope="col">USD $</th>
+                                                    <th class="text-center cryptoVal" scope="col">Crypto-Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-center" id="hotelBody">
+                                                <!-- 
+											<tr>	
+												<td><p data-placement="top" data-toggle="tooltip" title="Edit">
+													<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+														<span class="glyphicon glyphicon-pencil"></span>
+													</button>
+												</p></td>
+												
+												<td><p data-placement="top" data-toggle="tooltip" title="Delete">
+													<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
+														<span class="glyphicon glyphicon-trash"></span>
+													</button>
+												</p></td>
+											</tr>
+ -->
+                                            </tbody>
+                                        </table>
+                                        <!-- end table -->
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+                                <!-- end card  -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end panel body  -->
+                </div>
+                <!-- end panel-success -->
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- START OF FAVOURITES PAGE -->
+
+    <section class="favouritesPage">
+
+
+
+
+    </section>
+
+
+    <!-- START OF BUYER INFORMATION PAGE FOR PAYMENT -->
+
+    <section class="buyerInformation">
+
+    </section>
+
+
+
+
+    <!-- START OF CONFIRMATION OF PAYMENT PAGE -->
+    <section class="confirmationPage">
+
+
+
+    </section>
+
+
+
+    <!-- START OF FOOTER -->
+
+    <footer>
+        <div class="container">
+            <div class="card footerCard">
+                <div class="card-header text-center">
+                    <p>
+                        <i class="far fa-copyright footerIcon"></i> 2018 appName</p>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+
+        // CALENDAR CHECK-IN DATE
+
+
+        $(document).ready(function () {
+
+
+            $('#datetimepicker1').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+
+            }).on('changeDate', function (selected) {
+                var minDate = new Date(selected.date.valueOf());
+                $('#datetimepicker2').datepicker('setStartDate', minDate);
+
+            });
+
+
+
+
+            //CALENDAR CHECK-OUT DATE
+
+            $('#datetimepicker2').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+            }).on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#datetimepicker1').datepicker('setEndDate', maxDate);
+            });
+
+
+
+        });
+
+
+
+
+    </script>
 </body>
+
+
+
 </html>
