@@ -43,9 +43,14 @@ header{
     padding:20px;
     position:absolute;
     top:20px;
-    left:2px;
+    left:3px;
     width:87%;
 
+}
+
+.nav-link a{
+    font-family:'Lato', sans-serif;
+    text-transform: uppercase;
 }
 
 .far, .fas{
@@ -97,11 +102,12 @@ header{
 
 
 .pageButtons{
+    font-size:1.7rem;
     margin-bottom:8px;
     margin-right:10px;
-    background-color:#2ecc71;
+    background-color:lightseagreen;
     font-family: 'Lato', sans-serif;
-    border:1px solid #2ecc71;
+    border:1px solid lightseagreen;
 
 }
 
@@ -123,12 +129,8 @@ header{
 
 
 
-
-
-
-
 /* SEARCHBOXES STYLE BEGINS */
-.panel{
+ .searchBoxes, .displayResults, .myBookings, .favouritesPage, .buyerInformation, .aboutUs, .contactUs, .confirmationPage{
     margin-top:80px;
 }
 
@@ -136,6 +138,48 @@ header{
 
 
 
+
+
+
+/* PREVIOUS BOOKING STYLING BEGINS */
+.form-control.IdBox{
+    margin:0 auto;
+    width: 50%;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+/* ABOUT US PAGE STYLING */
+.aboutText{
+    font-family:'Lato', sans-serif;
+    font-size:2rem;
+    text-align:justify;
+    line-height:1.7em;
+    margin-bottom:35px;
+
+}
+
+
+
+/* FAVOURITES SECTION STYLING BEGINS */
+.add-favourite{
+    background-color:lightseagreen;
+    color:white;
+}
+
+.favouriteHeading{
+    font-size:2rem;
+    font-family: 'Lato', sans-serif;
+    background-color: lightseagreen;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-weight:bold;
+}
+
+.add-favourite:hover{
+    background-color:darkgreen;
+}
 
 /* CONFIRMATION PAGE STYLES BEGINS */
 .confirmCard{
@@ -150,7 +194,7 @@ header{
 .confirmHeading{
     color: white;
     font-size: 2rem;
-    background-color: #2ecc71;
+    background-color:lightseagreen;
     padding: 20px;
     text-align: center;
 }
