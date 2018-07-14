@@ -1,3 +1,5 @@
+
+/************************CHECKOUT PAGE************************************************* */
 //Global Variables 
 var itemPrices = [0.034,0.00456]; // push in prices of all selected items
 
@@ -23,17 +25,17 @@ function copy(input) {
 //Customer information to firebase database 
 
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBz7O2sKtxxkxGVsSh9ICLOlMngDG058Mc",
-    authDomain: "project1-group3.firebaseapp.com",
-    databaseURL: "https://project1-group3.firebaseio.com",
-    projectId: "project1-group3",
-    storageBucket: "project1-group3.appspot.com",
-    messagingSenderId: "50484590409"
-  };
-  firebase.initializeApp(config);
+//   var config = {
+//     apiKey: "AIzaSyBz7O2sKtxxkxGVsSh9ICLOlMngDG058Mc",
+//     authDomain: "project1-group3.firebaseapp.com",
+//     databaseURL: "https://project1-group3.firebaseio.com",
+//     projectId: "project1-group3",
+//     storageBucket: "project1-group3.appspot.com",
+//     messagingSenderId: "50484590409"
+//   };
+//   firebase.initializeApp(config);
 
-  var database = firebase.database();
+//   var database = firebase.database();
 
   $("#payment").hide()
 
