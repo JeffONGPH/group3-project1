@@ -18,42 +18,96 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var results;
-    var bitPrice = [];
-    var hotels = [];
-    var usDollar;
-    var itemPrices = []; // push in prices of all selected items
-var totalPrice = 0 ;
+var bitPrice = [];
+var hotels = [];
+var usDollar;
+var itemPrices = []; // push in prices of all selected items
+var totalPrice = 0;
 var itemPrice = 0;
 var priceInUsd = 0;
 
 $(document).ready(function () {
+    $("#about").hide();
+    $("#contact").hide();
     $(".checkoutPages").hide()
     $(".displayResults").hide()
+    $("#myFavourites").hide();
+    $("#findBooking").hide();
+    $(".confirmationPage").hide();
     $("#favouritesPage").append(localStorage.getItem("hotel-name") + localStorage.getItem("hotel-address") + localStorage.getItem("hotel-amenities") + localStorage.getItem("hotel-price") + "<br>")
-    
-    
+
+    // EVENT LISTENER FOR ABOUT PAGE AND CONTACT US PAGE
+
+    $("#aboutapp").on("click", function () {
+        $("#about").show();
+        $(".searchBoxes").hide();
+        $(".checkoutPages").hide()
+        $(".displayResults").hide()
+        $("#myFavourites").hide();
+        $("#findBooking").hide();
+        $(".confirmationPage").hide();
+    })
+
+    $(".backtoSearch").on("click", function () {
+        $(".searchBoxes").show();
+        $("#about").hide();
+        $("#contact").hide();
+        $(".checkoutPages").hide()
+        $(".displayResults").hide()
+        $("#myFavourites").hide();
+        $("#findBooking").hide();
+        $(".confirmationPage").hide();
+    })
+//contact
+
+    $("#contactapp").on("click", function () {
+        $("#about").hide();
+        $("#contact").show();
+        $(".searchBoxes").hide();
+        $(".checkoutPages").hide()
+        $(".displayResults").hide()
+        $("#myFavourites").hide();
+        $("#findBooking").hide();
+        $(".confirmationPage").hide();
+    })
+
+    //find bookings
+
+    $(".gotobook").on("click", function(){
+        $(".searchBoxes").hide();
+        $("#about").hide();
+        $("#contact").hide();
+        $(".checkoutPages").hide()
+        $(".displayResults").hide()
+        $("#myFavourites").hide();
+        $("#findBooking").show();
+        $(".confirmationPage").hide();
+
+    })
+
   
 
-    $("#step1Button").on("click", function (event){
+
+    $("#step1Button").on("click", function (event) {
         event.preventDefault();
 
-    var total = itemPrices.reduce(getSum, 0)
+        var total = itemPrices.reduce(getSum, 0)
 
-    totalPrice = Math.round(total * 100000) / 100000;
-    console.log(totalPrice);
-    
+        totalPrice = Math.round(total * 100000) / 100000;
+        console.log(totalPrice);
+
         var firstName = $("#firstName").val().trim();
         var lastName = $("#lastName").val().trim();
         var email = $("#email").val().trim();
         var address1 = $("#address1").val().trim();
         var address2 = $("#address2").val().trim();
-        var city = $("#city").val().trim(); 
+        var city = $("#city").val().trim();
         var country = $("#country").val().trim();
         var postcode = $("#postcode").val().trim();
         var phone = $("#phone").val().trim();
-        
+
         var newCustomer = {
-            firstName: firstName ,
+            firstName: firstName,
             lastName: lastName,
             email: email,
             address1: address1,
@@ -71,10 +125,10 @@ $(document).ready(function () {
             USDprice: priceInUsd
 
         }
-        console.log("new customer = " , newCustomer)
+        console.log("new customer = ", newCustomer)
         database.ref("/customers").push(newCustomer);
-    
-    
+
+
         $("#firstName").val("");
         $("#lastName").val("");
         $("#email").val("");
@@ -84,11 +138,11 @@ $(document).ready(function () {
         $("#country").val("");
         $("#postcode").val("");
         $("#phone").val("");
-    
+
         //call crytopayment function 
-        cryptoPayment ();
-    
-      });
+        cryptoPayment();
+
+    });
 
     function bitcoinCall() {
 
@@ -143,7 +197,7 @@ $(document).ready(function () {
                     $("<td class='four'>").text(results[j].total_price.amount),
                     $("<td class='five'>").text(((results[j].total_price.amount) / usDollar).toFixed(5)),
                     //ADDED 
-                    $("<button class='book'>").text("Book").attr("data-value", j )
+                    $("<button class='book'>").text("Book").attr("data-value", j)
 
                 );
 
@@ -153,18 +207,18 @@ $(document).ready(function () {
             $('.book').on("click", function (event) {
                 console.log('book')
                 event.preventDefault();
-        
+
                 hotelName = $(this).closest("tr").children("td.one").text()
                 hotelAddress = $(this).closest("tr").children("td.two").text()
                 priceInUsd = JSON.parse($(this).closest("tr").children("td.four").text())
                 itemPrice = JSON.parse($(this).closest("tr").children("td.five").text())
 
-      
+
 
                 itemPrices.push(itemPrice)
-                
-                console.log ("itemPrice" , itemPrice , "itemPrices" , itemPrices)
-        
+
+                console.log("itemPrice", itemPrice, "itemPrices", itemPrices)
+
                 $(".displayResults").hide()
                 $(".searchBoxes").hide()
                 $(".checkoutPages").show()
@@ -194,20 +248,6 @@ $(document).ready(function () {
 
 
 
-    $("#btnSubmit").on("click", function (event) {
-        event.preventDefault();
-
-        destination = $("#destination").val();
-        checkInDate = $("#datetimepicker1").val();
-        checkOutDate = $("#datetimepicker2").val();
-        cryptoCurrency = $("#cryptoCurrency").val();
-        $object.queryHotels(destination, checkInDate, checkOutDate, cryptoCurrency);
-        
-        $(".displayResults").show();
-        $(".searchBoxes").hide();
-
-    });
-
     $(".nav-favs").on("click", function (event) {
         event.preventDefault();
         $("#favouritesPage").show();
@@ -215,7 +255,24 @@ $(document).ready(function () {
         $(".searchBoxes").hide();
     });
 
-
+    // JAVASCRIPT FOR SCROLL
+    $("a").on('click', function (event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+            // Store hash
+            var hash = this.hash;
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 1000, function () {
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+        } // End if
+    });
     //ADDED
     //BOOK BUTTON 
     // var config = {
@@ -227,24 +284,21 @@ $(document).ready(function () {
     //     messagingSenderId: "50484590409"
     //   };
     //   firebase.initializeApp(config);
-    
+
     //   var database = firebase.database();
 
 
     //*********************DATE POP UP********************************************** */
+    // JAVASCRIPT FOR CALENDAR
     $('#datetimepicker1').datepicker({
         format: "yyyy-mm-dd",
         autoclose: true,
         todayHighlight: true,
-
     }).on('changeDate', function (selected) {
         var minDate = new Date(selected.date.valueOf());
         $('#datetimepicker2').datepicker('setStartDate', minDate);
-
     });
-
     //CALENDAR CHECK-OUT DATE
-
     $('#datetimepicker2').datepicker({
         format: "yyyy-mm-dd",
         autoclose: true,
@@ -253,6 +307,49 @@ $(document).ready(function () {
         var maxDate = new Date(selected.date.valueOf());
         $('#datetimepicker1').datepicker('setEndDate', maxDate);
     });
+
+    // JAVASCRIPT FOR ERROR MESSAGES
+    $("#btnSubmit").on("click", function () {
+        // event.preventDefault();
+        var inputValid = false;
+        var destinationInput = $("#destination").val().trim();
+        var checkIn = $("#datetimepicker1").val().trim();
+        var checkOut = $("#datetimepicker2").val().trim();
+        if ((destinationInput.length != 3) || (destinationInput == "")) {
+            inputValid = false;
+            $("#destinationError").text("Invalid Airport Code. Please enter a valid three letter airport code.")
+                .css({ 'font-weight': 'normal' })
+                .css({ 'color': 'red' })
+        }
+        if (checkIn == "") {
+            inputValid = false;
+            $("#checkinError").text("Please input a date in the format 'YYYY-MM-DD'")
+                .css({ 'font-weight': 'normal' })
+                .css({ 'color': 'red' })
+        }
+        if (checkOut == "") {
+            inputValid = false;
+            $("#checkoutError").text("Please input a date in the format 'YYYY-MM-DD'")
+                .css({ 'font-weight': 'normal' })
+                .css({ 'color': 'red' })
+        }
+        else {
+            inputValid = true;
+            $("#destination").css({ 'color': 'black' })
+                .css({ 'font-weight': 'normal' })
+            $("#datetimepicker1").css({ 'color': 'black' })
+                .css({ 'font-weight': 'normal' })
+            $("#datetimepicker2").css({ 'color': 'black' })
+                .css({ 'font-weight': 'normal' })
+            destination = $("#destination").val();
+            checkInDate = $("#datetimepicker1").val();
+            checkOutDate = $("#datetimepicker2").val();
+            cryptoCurrency = $("#cryptoCurrency").val();
+            $object.queryHotels(destination, checkInDate, checkOutDate, cryptoCurrency);
+            $(".displayResults").show();
+            $(".searchBoxes").hide();
+        }
+    })
 
     //*********************END OF DATE POP UP********************************************** */  
 }); //DOC READY 
@@ -265,23 +362,23 @@ $(document).ready(function () {
 
 //Global function
 
-    //adder
+//adder
 function getSum(total, num) {
     return total + num;
 }
-  //copier
+//copier
 function copy(input) {
     var copyText = document.getElementById(input);
     copyText.select();
     document.execCommand("copy");
     alert("Copied the text: " + copyText.value);
-  }
+}
 
 
 //STEP 1 **********************************************************************************************
 //Customer information to firebase database 
 
-  // Initialize Firebase
+// Initialize Firebase
 //   var config = {
 //     apiKey: "AIzaSyBz7O2sKtxxkxGVsSh9ICLOlMngDG058Mc",
 //     authDomain: "project1-group3.firebaseapp.com",
@@ -294,79 +391,79 @@ function copy(input) {
 
 //   var database = firebase.database();
 
-  $("#payment").hide()
+$("#payment").hide()
 
 
 
 //STEP 2 ******************************************************************************************
 //cryptocurency payment page 
-        //Generate QR
+//Generate QR
 
-function cryptoPayment (){  
+function cryptoPayment() {
 
 
-var addresses = ["3F94KqYPvg8MXz5vJoXihdxvkBBB9uw1fw", 
-"3Qw3d1zo1unDD7s7HWjwbLafvkmQ4JGySt",
-"34DFdrr1Ln3PMXJMfGau86vKBQMzjdUBac",
-"36z43CsBvPjNT181QLmfaVfBDjEtyPXjdp",
-"31pcEuGNZzRgyjrY8biP2MMGjpFNxNiaPn",
-"3L8NBcohT7a4EZ1iGN9rmLSLbcwf73zcjz",
-"3F94KqYPvg8MXz5vJoXihdxvkBBB9uw1fw",
-]
+    var addresses = ["3F94KqYPvg8MXz5vJoXihdxvkBBB9uw1fw",
+        "3Qw3d1zo1unDD7s7HWjwbLafvkmQ4JGySt",
+        "34DFdrr1Ln3PMXJMfGau86vKBQMzjdUBac",
+        "36z43CsBvPjNT181QLmfaVfBDjEtyPXjdp",
+        "31pcEuGNZzRgyjrY8biP2MMGjpFNxNiaPn",
+        "3L8NBcohT7a4EZ1iGN9rmLSLbcwf73zcjz",
+        "3F94KqYPvg8MXz5vJoXihdxvkBBB9uw1fw",
+    ]
 
-var address = addresses[Math.floor(Math.random() * 6) + 1 ]
-  
-var qr = "https://chart.googleapis.com/chart?chs=350x350&cht=qr&" 
-+ "chl=bitcoin:" + address + "&amount=" + totalPrice;
+    var address = addresses[Math.floor(Math.random() * 6) + 1]
+
+    var qr = "https://chart.googleapis.com/chart?chs=350x350&cht=qr&"
+        + "chl=bitcoin:" + address + "&amount=" + totalPrice;
 
     //Display 
     $("#payment").show();
     $("#form").hide();
-    
-    
+
+
     var paidButton = "<button class ='btn btn-primary'>Mark as Paid</button>"
 
     //id='step2Button' 
 
     $(".progress-bar").html("Payment");
-    $(".progress-bar").attr({"style": "width: 60%" , "aria-valuenow":"60"});
-    $("#qr").html("<img  src =' " + qr + " ' >" );
+    $(".progress-bar").attr({ "style": "width: 60%", "aria-valuenow": "60" });
+    $("#qr").html("<img  src =' " + qr + " ' >");
     $("#instruction").html("<p>Send the indicated amount to the address below</p>");
 
-    $("#totalPrice").attr({"value": totalPrice ,  "readonly":"readonly"});
-    $("#bitAddress").attr({"value": address ,  "readonly":"readonly"});
+    $("#totalPrice").attr({ "value": totalPrice, "readonly": "readonly" });
+    $("#bitAddress").attr({ "value": address, "readonly": "readonly" });
     $("#step2Button").html(paidButton);
 
-    $("#copyButton1").on("click",function (){
+    $("#copyButton1").on("click", function () {
         copy("totalPrice");
     }); //
-    $("#copyButton2").on("click",function (){
+    $("#copyButton2").on("click", function () {
         copy("bitAddress");
     }); //
-    
-    $("#step2Button").on("click",function(event){
+
+    $("#step2Button").on("click", function (event) {
         event.preventDefault();
         console.log("workin");
         confirmed()
     });
-  
+
 
 }; //end of step 2
 
 
 //STEP 3 *******************************************************************************************
 
- //CONDITION: Bitcoin notification received 
-function confirmed () {
+//CONDITION: Bitcoin notification received 
+function confirmed() {
     $("#payment").hide()
     $(".progress-bar").html("Confirmed")
-    $(".progress-bar").attr({"style": "width: 100%" , "aria-valuenow":"100"})
+    $(".progress-bar").attr({ "style": "width: 100%", "aria-valuenow": "100" })
 
 
-$("#content").html("SUMMARY OF PURCHASE/INVOICE HERE"+"<br>"+ "<br>" + "Thank you for your purchase. A confirmation email had been send to example@gmail.com. It will take up to 24hour.....blah blah" )
+    $("#content").html("SUMMARY OF PURCHASE/INVOICE HERE" + "<br>" + "<br>" + "Thank you for your purchase. A confirmation email had been send to example@gmail.com. It will take up to 24hour.....blah blah")
 
 
-//summary of purchase//
-//shootout email to customer//
+    //summary of purchase//
+    //shootout email to customer//
 
 }
