@@ -40,7 +40,7 @@ header{
 }
 
 .navbar{
-    padding:20px;
+    padding:7px;
     position:absolute;
     top:20px;
     left:3px;
@@ -205,25 +205,15 @@ header{
     margin-bottom: 20px;
 }
 
+#cbookings{
+    display: flex;
+    align-content: center;
+    justify-content: center;
 
-
-
-
-
-
-
-/* FOOTER STYLE BEGINS */
-footer, .footerCard{
-background-color:#222222;
-}
-
-.footerIcon, .card-header{
-    color:#ffffff;
 }
 
 
-
-/** checkout **/
+/** CHECKOUT **/
 
 #booking-heading {
   width: 100%;
@@ -231,6 +221,75 @@ background-color:#222222;
 
 .booking-id {
     font-size: 200%;
+    width: 100%
 }
 
+/** CHECKOUT **/
+.button-container, #qr ,#bitAddress ,#instruction, #content, #form, .btcDisplay{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+   
+}
 
+.button-container{
+    margin-top:10px;
+}
+
+#form , #payment {
+width: 100%
+}
+
+#form, h2{text-align:center;}
+
+
+.progress-bar{
+    background-color:turquoise;
+    color: mintcream;
+    font-size: 18px;
+    padding-top: 5px;}
+
+.btcDisplay{
+    margin:10px;
+}
+
+#bitAddress, #totalPrice {
+    width: 60%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.btcDisplay-wrapper{
+    margin-bottom:40px;
+}
+
+#steps {
+    font-size:200%;
+}
+
+.customButton {
+    background-color:violet;
+    padding:5px 25px;
+    font-size:20px;
+}
+/** CHECKOUT END **/
+
+
+
+.order-details{
+    width:100%;
+}
+
+tr {
+    border: solid 3px grey;
+}
+
+/* FOOTER STYLE BEGINS */
+footer, .footerCard{
+    background-color:#222222;
+    }
+    
+    .footerIcon, .card-header{
+        color:#ffffff;
+    }
+    

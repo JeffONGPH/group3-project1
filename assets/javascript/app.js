@@ -56,6 +56,7 @@ $(document).ready(function () {
     })
 
     $(".backtoSearch").on("click", function () {
+        $(".heading").show();
         $(".searchBoxes").show();
         $("#about").hide();
         $("#contact").hide();
@@ -67,7 +68,7 @@ $(document).ready(function () {
 
         $("#cbookings").hide()
     })
-    //contact
+
 
     $("#contactapp").on("click", function () {
         $("#about").hide();
@@ -100,9 +101,12 @@ $(document).ready(function () {
     $("#myFavourites").hide();
 
     $("#star").on("click", function () {
-        $("#myFavourites").show()
+        $("#myFavourites").show();
+        $("#about").hide();
+       
 
     })
+
     //checkout process
 
     $("#step1Button").on("click", function (event) {
@@ -123,6 +127,9 @@ $(document).ready(function () {
         var postcode = $("#postcode").val().trim();
         var phone = $("#phone").val().trim();
 
+        if (firstName && lastName && email && address1 && city && country && postcode && phone !=="")
+        {
+
         var newCustomer = {
             firstName: firstName,
             lastName: lastName,
@@ -142,6 +149,8 @@ $(document).ready(function () {
             USDprice: priceInUsd
 
         }
+
+        
         console.log("new customer = ", newCustomer)
         database.ref("/customers").push(newCustomer);
 
@@ -168,6 +177,10 @@ $(document).ready(function () {
 
         //call crytopayment function 
         cryptoPayment();
+
+    }else {
+        alert("Please fill out all fields")
+    }
 
     });
 
@@ -233,6 +246,8 @@ $(document).ready(function () {
             $('.book').on("click", function (event) {
                 console.log('book')
                 event.preventDefault();
+                $("#myFavourites").hide();
+                $(".heading").hide();
 
                 hotelName = $(this).closest("tr").children("td.one").text()
                 hotelAddress = $(this).closest("tr").children("td.two").text()
@@ -284,11 +299,11 @@ $(document).ready(function () {
 
                 var favPrice = JSON.parse($(this).closest("tr").children("td.five").text())
 
-                localStorage.setItem("hotel-name", results[k].property_name);
-                localStorage.setItem("hotel-address", results[k].address.line1);
-                localStorage.setItem("hotel-amenities", results[k].amenities[Math.floor(Math.random() * 4) + 1].description);
-                localStorage.setItem("hotel-price", results[k].total_price.amount);
-                localStorage.setItem("hotel-bitprice", favPrice);
+                // localStorage.setItem("hotel-name", results[k].property_name);
+                // localStorage.setItem("hotel-address", results[k].address.line1);
+                // localStorage.setItem("hotel-amenities", results[k].amenities[Math.floor(Math.random() * 4) + 1].description);
+                // localStorage.setItem("hotel-price", results[k].total_price.amount);
+                // localStorage.setItem("hotel-bitprice", favPrice);
 
                 database.ref("/favourites/" + k).set({
                     name: results[k].property_name,
@@ -432,7 +447,16 @@ $(document).ready(function () {
                 .css({
                     'color': 'red'
                 })
-        } else {
+        } if (checkIn == checkOut)
+        {
+            inputValid = false;
+            $("#checkoutError").text("check out date must be a minimum of one day from the check in data")
+                .css({
+                    'font-weight': 'normal'
+                })
+                .css({
+                    'color': 'red'
+                })}else {
             inputValid = true;
             $("#destination").css({
                     'color': 'black'
@@ -514,7 +538,7 @@ function cryptoPayment() {
     //$(".order-review").hide();
 
 
-    var paidButton = "<button class ='btn btn-primary'>Mark as Paid</button>"
+    var paidButton = "<button class ='btn customButton'>Mark as Paid</button>"
 
     //id='step2Button' 
 
@@ -568,7 +592,7 @@ function confirmed() {
     $(".confirmationPage").show()
     $(".order-details").show()
 
-    $(".booking-id").html("Booking-ID: " + bookingID)
+    
 
     retrieve(bookingID);
 
@@ -579,35 +603,34 @@ function confirmed() {
 //check bookings function
 function retrieve(ID) {
 
-    database.ref("/customers").on("child_added", function (childSnapshot) {
+    database.ref("/customers").child(ID).once("value", function(snapshot) {
+        console.log("childvalue ",snapshot.val())
+        
+        if (snapshot.val() !== null) {
+            //database.ref("/customers/" + ID ).on("value", function () {
 
-        console.log(childSnapshot.key, ID)
+                console.log("bgtest", snapshot.val().hName )
+                $(".booking-id").html("<h1><strong>Booking-ID: " + ID + "</strong></h1>")
+    
+                $(".booked-heading").html("ID: ")
+                $(".booked-id").html(ID)
+    
+                $(".booked-hotelname").html(snapshot.val().hName)
+                $(".booked-address").html(snapshot.val().hAddress)
+                $(".booked-checkin").html(snapshot.val().checkIn)
+                $(".booked-checkout").html(snapshot.val().checkOut)
+                $(".booked-payment").html((snapshot.val().bitPrice) + " Bitcoins")
+                $(".booked-name").html((snapshot.val().firstName) + " " + (snapshot.val().lastName))
+                $(".booked-phone").html(snapshot.val().phone)
+                $(".booked-email").html(snapshot.val().email)
+            //})
+        }else if (snapshot.val() === null) { $("#cbookings").html("<h1 style='margin-top: 25px; color:red;'>Your booking do not exist. Check you ID and try again.</h1>")
 
-        if (childSnapshot.key = ID) {
-
-            console.log("booking details appending")
-
-
-            $(".booked-heading").html("ID: ")
-            $(".booked-id").html(childSnapshot.key)
-
-            $(".booked-hotelname").html(childSnapshot.val().hName)
-            $(".booked-address").html(childSnapshot.val().hAddress)
-            $(".booked-checkin").html(childSnapshot.val().checkIn)
-            $(".booked-checkout").html(childSnapshot.val().checkOut)
-            $(".booked-payment").html((childSnapshot.val().bitPrice) + " Bitcoins")
-            $(".booked-name").html((childSnapshot.val().firstName) + " " + (childSnapshot.val().lastName))
-            $(".booked-phone").html(childSnapshot.val().phone)
-            $(".booked-email").html(childSnapshot.val().email)
         }
+      });
+    }
 
-        console.log("hotelname " + childSnapshot.val().hName)
 
-
-
-    })
-
-}
 
 
 //check bookings button 
@@ -615,15 +638,19 @@ $("#SubmitIdBtn").on("click", function () {
     $("#findBooking").hide()
     $("#cbookings").show()
 
-
-
-    //$(".confirmationPage").hide();
-
-    var customerInput = JSON.stringify($(".idBox").val().trim())
+    var customerInput = $(".idBox").val().trim();
 
     console.log("TEST", customerInput)
 
-
+if (customerInput !== ""){
     retrieve(customerInput)
+} else {
+    alert("please type in you booking ID!")
+}
+   
 
 });
+
+
+
+

@@ -33,7 +33,7 @@
     <header class="heading">
         <div class="container navContainer">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand">appName</a>
+                <a class="navbar-brand" href="index.html"><strong style="padding:18%; margin:0; background-color:lightseagreen; ">BitHotels</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -74,10 +74,10 @@
         <section class="subHeading">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h2 class="display-4 welcomeMsg">Welcome to appName</h2>
+                    <h2 class="display-4 welcomeMsg">Welcome to Bit-Hotels!</h2>
                     <p class="lead">Easy. Convenient. Hassle-Free Bitcoin Payments</p>
                     <p class="text-center justify-content-space-between">
-                        <a href="#searchHotel" class="btn btn-primary btn-lg pageButtons backtoSearch" role="button">Get Started</a>
+                        <a href="#searchHotel" class="btn btn-primary btn-lg pageButtons backtoSearch" role="button" id="toSearch">Get Started</a>
                         <a href="#findBooking" class="btn btn-primary btn-lg pageButtons gotobook" role="button">My Booking</a>
                     </p>
 
@@ -121,7 +121,7 @@
                                                     <!-- input 1 -->
                                                     <div class="col-md-12">
                                                         <label for="destination">Airport Code:</label>
-                                                        <input class="form-control" id="destination" type="text" value="LAX">
+                                                        <input class="form-control " id="destination"  type="text" value="LAX">
                                                         <p id="destinationError"></p>
                                                     </div>
                                                 </div>
@@ -221,7 +221,8 @@
                                                     <th class="text-center hotelAdd" scope="col">Address</th>
                                                     <th class="text-center amenities" scope="col">Amenities</th>
                                                     <th class="text-center dollarVal" scope="col">USD $</th>
-                                                    <th class="text-center cryptoVal" scope="col">Crypto-Price</th>
+                                                    <th class="text-center cryptoVal" scope="col">Bitcoin</th>
+                                                    <th class="text-center cryptoVal" scope="col">Reserve</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-center" id="hotelBody">
@@ -441,9 +442,7 @@
                             <label for="phone">Phone (optional) </label>
                             <input type="text" class="form-control" id="phone" placeholder="e.g 778-343-4531">
                         </div>
-                        <div class="button-container">
-                            <button type="submit" id="step1Button" class="btn btn-primary">Next Step</button>
-                        </div>
+                      
                     </form>
                     <!--ordrr review -->
 
@@ -453,8 +452,15 @@
 
 
                         </div>
+                        <div class="button-container">
+                            <button type="submit" id="step1Button" class="btn customButton">Next Step</button>
+                        </div>
+                        <a href="index.html" style=" margin-top: 5px; font-size:10%; color:grey ">Cancel Bookings</a>
                     </div>
+                  
                     <!--ordrr review -->
+
+                  
                 </div>
 
 
@@ -562,7 +568,7 @@
                                     </p>
                                 <p class="card-text processPara">Your booking details are as follows. We will email you an offcial copy of the invoice once
                                     the transaction is cleared.</p>
-                                <a href="#" class="btn btn-primary pageButtons backtoSearch">Search Again</a>
+                                <a href="index.html" class="btn btn-primary pageButtons backtoSearch">Search Again</a>
                             </div>
                         </div>
                     </div>
@@ -598,13 +604,14 @@
 
     <!--Check bookings-->
     <section id="cbookings">
+        <div>
+                <div class="booking-id"></div>
+                <br>
+                <br>
         <table class="order-details">
 
-            <tr>
-
-                <th class="booked-heading"></th>
-                <td class="booked-id"></td>
-            </tr>
+           
+         
 
             <tr>
 
@@ -628,6 +635,10 @@
                 <td class="booked-payment"></td>
             </tr>
             <tr>
+                    <th class="booked-heading"></th>
+                    <td class="booked-id"></td>
+                </tr>
+            <tr>
                 <th>Name of guess:</th>
                 <td class="booked-name"></td>
             </tr>
@@ -641,6 +652,7 @@
             </tr>
 
         </table>
+    </div>
     </section>
 
 
@@ -651,26 +663,18 @@
 
     <!-- START OF FOOTER -->
 
-    <footer>
+    <!-- <footer>
         <div class="container">
             <div class="card footerCard">
                 <div class="card-header text-center">
                     <p>
-                        <i class="far fa-copyright footerIcon"></i> 2018 appName</p>
+                        <i class="far fa-copyright footerIcon"></i> 2018 Bit-Hotel</p>
                 </div>
             </div>
         </div>
 
 
-    </footer>
-
-
-
-
-
-
-
-
+    </footer> -->
 
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
