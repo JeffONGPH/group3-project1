@@ -33,12 +33,14 @@ $(document).ready(function () {
     $("#contact").hide();
     $(".checkoutPages").hide()
     $(".displayResults").hide()
-    $("#myFavourites").hide();
     $("#findBooking").hide();
     $(".confirmationPage").hide();
     $("#favouritesPage").append(localStorage.getItem("hotel-name") + localStorage.getItem("hotel-address") + localStorage.getItem("hotel-amenities") + localStorage.getItem("hotel-price") + "<br>")
-
+    $("#myFavourites").hide();
     $("#cbookings").hide()
+
+    //Remove all favourites data
+    database.ref("/favourites").remove();
     // EVENT LISTENER FOR ABOUT PAGE AND CONTACT US PAGE
 
     $("#aboutapp").on("click", function () {
@@ -65,7 +67,7 @@ $(document).ready(function () {
 
         $("#cbookings").hide()
     })
-//contact
+    //contact
 
     $("#contactapp").on("click", function () {
         $("#about").hide();
@@ -82,7 +84,7 @@ $(document).ready(function () {
 
     //find bookings
 
-    $(".gotobook").on("click", function(){
+    $(".gotobook").on("click", function () {
         $(".searchBoxes").hide();
         $("#about").hide();
         $("#contact").hide();
@@ -95,8 +97,13 @@ $(document).ready(function () {
         $("#cbookings").hide()
     })
 
-  
-//checkout process
+    $("#myFavourites").hide();
+
+    $("#star").on("click", function () {
+        $("#myFavourites").show()
+
+    })
+    //checkout process
 
     $("#step1Button").on("click", function (event) {
         event.preventDefault();
@@ -154,9 +161,9 @@ $(document).ready(function () {
 
         database.ref("/customers").limitToLast(1).on("child_added", function (snapshot) {
 
-           bookingID = snapshot.key
-           console.log("bookingID", bookingID)
-            });
+            bookingID = snapshot.key
+            console.log("bookingID", bookingID)
+        });
 
 
         //call crytopayment function 
@@ -174,8 +181,6 @@ $(document).ready(function () {
         }).then(function (response) {
             usDollar = response.USD;
             console.log("USD = " + usDollar)
-
-            //bitPrice[i] = ((results[j].total_price.amount).toFixed(4)/usDollar) ;
         });
     }
 
@@ -222,6 +227,7 @@ $(document).ready(function () {
                 );
 
                 $("#hotelBody").append(newRow);
+
             }
             // Book buttons
             $('.book').on("click", function (event) {
@@ -245,20 +251,20 @@ $(document).ready(function () {
                 $(".order-details").hide()
 
                 //order review column 
-                var priceSum= itemPrices.reduce(getSum, 0)
+                var priceSum = itemPrices.reduce(getSum, 0)
 
                 var summaryTotal = Math.round(priceSum * 100000) / 100000;
                 console.log(summaryTotal);
 
-                var orderTable = "<h3><strong>"+ hotelName + "</strong></h3>" + "<br>"
-                 + "<div> Check In: " + checkInDate + "</div>"
-                 + "<div> Check Out: " + checkOutDate  + "</div>"
-                 + "<br>"
-                 + "<strong>Price Summary</strong>"
-                 + "<div>" + summaryTotal + " Bitcoins </div>"
-                 + "<div>"  + priceInUsd + " US Dollars </div>"               
-                    
-                
+                var orderTable = "<h3><strong>" + hotelName + "</strong></h3>" + "<br>" +
+                    "<div> Check In: " + checkInDate + "</div>" +
+                    "<div> Check Out: " + checkOutDate + "</div>" +
+                    "<br>" +
+                    "<strong>Price Summary</strong>" +
+                    "<div>" + summaryTotal + " Bitcoins </div>" +
+                    "<div>" + priceInUsd + " US Dollars </div>"
+
+
                 $("#order-cart").html(orderTable)
             });
 
@@ -266,23 +272,81 @@ $(document).ready(function () {
 
 
         },
-
+        //favourites
         addFavourites: function () {
+            var totalFavs = 0;
             $(document).on("click", ".add-favourite", function () {
+                $("#myFavourites").show();
+                $("#nofav").hide()
+
+                totalFavs++;
                 var k = $(this).attr("data-value");
-                console.log(results[k].property_name);
+
+                var favPrice = JSON.parse($(this).closest("tr").children("td.five").text())
+
                 localStorage.setItem("hotel-name", results[k].property_name);
                 localStorage.setItem("hotel-address", results[k].address.line1);
-                localStorage.setItem("hotel-amenities", results[k].amenities[k].description);
+                localStorage.setItem("hotel-amenities", results[k].amenities[Math.floor(Math.random() * 4) + 1].description);
                 localStorage.setItem("hotel-price", results[k].total_price.amount);
+                localStorage.setItem("hotel-bitprice", favPrice);
 
-                $("#favouritesPage").append(localStorage.getItem("hotel-name") + localStorage.getItem("hotel-address") + localStorage.getItem("hotel-amenities") + localStorage.getItem("hotel-price") + "<br>")
+                database.ref("/favourites/" + k).set({
+                    name: results[k].property_name,
+                    address: results[k].address.line1,
+                    amenities: results[k].amenities[Math.floor(Math.random() * 4) + 1].description,
+                    price: results[k].total_price.amount,
+                    bitprice: JSON.parse($(this).closest("tr").children("td.five").text()),
+                    dataAttr: k,
+                });
 
-                console.log(localStorage.getItem("hotel-name") + localStorage.getItem("hotel-address") + localStorage.getItem("hotel-amenities") + localStorage.getItem("hotel-price"));
+            });
+
+            // Access each time a fav is added, only reference specific one
+            database.ref("/favourites//").on("child_added", function (snapshot) {
+                console.log('on child_added')
+                //$("#favTable").empty();
+
+                console.log("TEST", snapshot.val().bitprice)
+
+
+                var newRow = $("<tr>").append(
+                    $("<button>").text("Remove Favourite").addClass("remove-favourite").attr("data-info", (snapshot.val().dataAttr) * 0.1),
+                    $("<td>").text(snapshot.val().name),
+                    $("<td>").text(snapshot.val().address),
+                    $("<td>").text(snapshot.val().amenities),
+                    $("<td>").text(snapshot.val().price),
+                    $("<td>").text(snapshot.val().bitprice)
+                );
+                console.log(newRow);
+                $("#favTable").show()
+                $("#favTable").append(newRow);
+
+            });
+
+            $object.removeFavourites();
+
+        },
+
+
+        removeFavourites: function () {
+
+            $(document).on("click", ".remove-favourite", function () {
+                var kk = $(this).attr("data-info");
+
+                var kten = Math.floor(kk * 10)
+
+                document.getElementById("favTable").deleteRow(kk);
+
+                database.ref("/favourites/" + kten).remove()
+
             });
 
         }
-    }
+
+        //favourites end
+
+
+    } //$object
 
 
 
@@ -311,7 +375,7 @@ $(document).ready(function () {
             });
         } // End if
     });
-   
+
     //*********************DATE POP UP********************************************** */
     // JAVASCRIPT FOR CALENDAR
     $('#datetimepicker1').datepicker({
@@ -342,29 +406,52 @@ $(document).ready(function () {
         if ((destinationInput.length != 3) || (destinationInput == "")) {
             inputValid = false;
             $("#destinationError").text("Invalid Airport Code. Please enter a valid three letter airport code.")
-                .css({ 'font-weight': 'normal' })
-                .css({ 'color': 'red' })
+                .css({
+                    'font-weight': 'normal'
+                })
+                .css({
+                    'color': 'red'
+                })
         }
         if (checkIn == "") {
             inputValid = false;
             $("#checkinError").text("Please input a date in the format 'YYYY-MM-DD'")
-                .css({ 'font-weight': 'normal' })
-                .css({ 'color': 'red' })
+                .css({
+                    'font-weight': 'normal'
+                })
+                .css({
+                    'color': 'red'
+                })
         }
         if (checkOut == "") {
             inputValid = false;
             $("#checkoutError").text("Please input a date in the format 'YYYY-MM-DD'")
-                .css({ 'font-weight': 'normal' })
-                .css({ 'color': 'red' })
-        }
-        else {
+                .css({
+                    'font-weight': 'normal'
+                })
+                .css({
+                    'color': 'red'
+                })
+        } else {
             inputValid = true;
-            $("#destination").css({ 'color': 'black' })
-                .css({ 'font-weight': 'normal' })
-            $("#datetimepicker1").css({ 'color': 'black' })
-                .css({ 'font-weight': 'normal' })
-            $("#datetimepicker2").css({ 'color': 'black' })
-                .css({ 'font-weight': 'normal' })
+            $("#destination").css({
+                    'color': 'black'
+                })
+                .css({
+                    'font-weight': 'normal'
+                })
+            $("#datetimepicker1").css({
+                    'color': 'black'
+                })
+                .css({
+                    'font-weight': 'normal'
+                })
+            $("#datetimepicker2").css({
+                    'color': 'black'
+                })
+                .css({
+                    'font-weight': 'normal'
+                })
             destination = $("#destination").val();
             checkInDate = $("#datetimepicker1").val();
             checkOutDate = $("#datetimepicker2").val();
@@ -418,8 +505,8 @@ function cryptoPayment() {
 
     var address = addresses[Math.floor(Math.random() * 6) + 1]
 
-    var qr = "https://chart.googleapis.com/chart?chs=350x350&cht=qr&"
-        + "chl=bitcoin:" + address + "&amount=" + totalPrice;
+    var qr = "https://chart.googleapis.com/chart?chs=350x350&cht=qr&" +
+        "chl=bitcoin:" + address + "&amount=" + totalPrice;
 
     //Display 
     $("#payment").show();
@@ -432,12 +519,21 @@ function cryptoPayment() {
     //id='step2Button' 
 
     $(".progress-bar").html("Payment");
-    $(".progress-bar").attr({ "style": "width: 60%", "aria-valuenow": "60" });
+    $(".progress-bar").attr({
+        "style": "width: 60%",
+        "aria-valuenow": "60"
+    });
     $("#qr").html("<img  src =' " + qr + " ' >");
     $("#instruction").html("<p>Send the indicated amount to the address below</p>");
 
-    $("#totalPrice").attr({ "value": totalPrice, "readonly": "readonly" });
-    $("#bitAddress").attr({ "value": address, "readonly": "readonly" });
+    $("#totalPrice").attr({
+        "value": totalPrice,
+        "readonly": "readonly"
+    });
+    $("#bitAddress").attr({
+        "value": address,
+        "readonly": "readonly"
+    });
     $("#step2Button").html(paidButton);
 
     $("#copyButton1").on("click", function () {
@@ -463,7 +559,10 @@ function cryptoPayment() {
 function confirmed() {
     $("#payment").hide()
     $(".progress-bar").html("Confirmed")
-    $(".progress-bar").attr({ "style": "width: 100%", "aria-valuenow": "100" })
+    $(".progress-bar").attr({
+        "style": "width: 100%",
+        "aria-valuenow": "100"
+    })
 
 
     $(".confirmationPage").show()
@@ -478,56 +577,53 @@ function confirmed() {
 }
 
 //check bookings function
-function retrieve(ID){
-    
+function retrieve(ID) {
+
     database.ref("/customers").on("child_added", function (childSnapshot) {
 
         console.log(childSnapshot.key, ID)
 
-    if (childSnapshot.key = ID){
+        if (childSnapshot.key = ID) {
 
-        console.log("booking details appending")
-
-
-        $(".booked-heading").html("ID: ")
-        $(".booked-id").html(childSnapshot.key)
-
-        $(".booked-hotelname").html(childSnapshot.val().hName)
-        $(".booked-address").html(childSnapshot.val().hAddress)
-        $(".booked-checkin").html(childSnapshot.val().checkIn)
-        $(".booked-checkout").html(childSnapshot.val().checkOut)
-        $(".booked-payment").html((childSnapshot.val().bitPrice)+ " Bitcoins")
-        $(".booked-name").html((childSnapshot.val().firstName) + " " + (childSnapshot.val().lastName))
-        $(".booked-phone").html(childSnapshot.val().phone)
-        $(".booked-email").html(childSnapshot.val().email)
-    }
-
-    console.log("hotelname " + childSnapshot.val().hName )
+            console.log("booking details appending")
 
 
-    
+            $(".booked-heading").html("ID: ")
+            $(".booked-id").html(childSnapshot.key)
+
+            $(".booked-hotelname").html(childSnapshot.val().hName)
+            $(".booked-address").html(childSnapshot.val().hAddress)
+            $(".booked-checkin").html(childSnapshot.val().checkIn)
+            $(".booked-checkout").html(childSnapshot.val().checkOut)
+            $(".booked-payment").html((childSnapshot.val().bitPrice) + " Bitcoins")
+            $(".booked-name").html((childSnapshot.val().firstName) + " " + (childSnapshot.val().lastName))
+            $(".booked-phone").html(childSnapshot.val().phone)
+            $(".booked-email").html(childSnapshot.val().email)
+        }
+
+        console.log("hotelname " + childSnapshot.val().hName)
+
+
+
     })
 
 }
 
 
 //check bookings button 
- $("#SubmitIdBtn").on("click", function(){
-$("#findBooking").hide()
-$("#cbookings").show()
+$("#SubmitIdBtn").on("click", function () {
+    $("#findBooking").hide()
+    $("#cbookings").show()
 
 
 
-//$(".confirmationPage").hide();
+    //$(".confirmationPage").hide();
 
-   var customerInput = JSON.stringify($(".idBox").val().trim())
+    var customerInput = JSON.stringify($(".idBox").val().trim())
 
-   console.log("TEST" ,customerInput)
-  
+    console.log("TEST", customerInput)
 
-   retrieve(customerInput)
+
+    retrieve(customerInput)
 
 });
-
-
-
