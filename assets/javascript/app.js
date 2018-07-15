@@ -26,6 +26,8 @@ var totalPrice = 0;
 var itemPrice = 0;
 var priceInUsd = 0;
 
+var bookingID;
+
 $(document).ready(function () {
     $("#about").hide();
     $("#contact").hide();
@@ -36,6 +38,7 @@ $(document).ready(function () {
     $(".confirmationPage").hide();
     $("#favouritesPage").append(localStorage.getItem("hotel-name") + localStorage.getItem("hotel-address") + localStorage.getItem("hotel-amenities") + localStorage.getItem("hotel-price") + "<br>")
 
+    $("#cbookings").hide()
     // EVENT LISTENER FOR ABOUT PAGE AND CONTACT US PAGE
 
     $("#aboutapp").on("click", function () {
@@ -46,6 +49,8 @@ $(document).ready(function () {
         $("#myFavourites").hide();
         $("#findBooking").hide();
         $(".confirmationPage").hide();
+
+        $("#cbookings").hide()
     })
 
     $(".backtoSearch").on("click", function () {
@@ -57,6 +62,8 @@ $(document).ready(function () {
         $("#myFavourites").hide();
         $("#findBooking").hide();
         $(".confirmationPage").hide();
+
+        $("#cbookings").hide()
     })
 //contact
 
@@ -69,6 +76,8 @@ $(document).ready(function () {
         $("#myFavourites").hide();
         $("#findBooking").hide();
         $(".confirmationPage").hide();
+
+        $("#cbookings").hide()
     })
 
     //find bookings
@@ -83,10 +92,11 @@ $(document).ready(function () {
         $("#findBooking").show();
         $(".confirmationPage").hide();
 
+        $("#cbookings").hide()
     })
 
   
-
+//checkout process
 
     $("#step1Button").on("click", function (event) {
         event.preventDefault();
@@ -138,6 +148,16 @@ $(document).ready(function () {
         $("#country").val("");
         $("#postcode").val("");
         $("#phone").val("");
+
+
+        //get bookingID 
+
+        database.ref("/customers").limitToLast(1).on("child_added", function (snapshot) {
+
+           bookingID = snapshot.key
+           console.log("bookingID", bookingID)
+            });
+
 
         //call crytopayment function 
         cryptoPayment();
@@ -222,6 +242,24 @@ $(document).ready(function () {
                 $(".displayResults").hide()
                 $(".searchBoxes").hide()
                 $(".checkoutPages").show()
+                $(".order-details").hide()
+
+                //order review column 
+                var priceSum= itemPrices.reduce(getSum, 0)
+
+                var summaryTotal = Math.round(priceSum * 100000) / 100000;
+                console.log(summaryTotal);
+
+                var orderTable = "<h3><strong>"+ hotelName + "</strong></h3>" + "<br>"
+                 + "<div> Check In: " + checkInDate + "</div>"
+                 + "<div> Check Out: " + checkOutDate  + "</div>"
+                 + "<br>"
+                 + "<strong>Price Summary</strong>"
+                 + "<div>" + summaryTotal + " Bitcoins </div>"
+                 + "<div>"  + priceInUsd + " US Dollars </div>"               
+                    
+                
+                $("#order-cart").html(orderTable)
             });
 
             $object.addFavourites();
@@ -273,21 +311,7 @@ $(document).ready(function () {
             });
         } // End if
     });
-    //ADDED
-    //BOOK BUTTON 
-    // var config = {
-    //     apiKey: "AIzaSyBz7O2sKtxxkxGVsSh9ICLOlMngDG058Mc",
-    //     authDomain: "project1-group3.firebaseapp.com",
-    //     databaseURL: "https://project1-group3.firebaseio.com",
-    //     projectId: "project1-group3",
-    //     storageBucket: "project1-group3.appspot.com",
-    //     messagingSenderId: "50484590409"
-    //   };
-    //   firebase.initializeApp(config);
-
-    //   var database = firebase.database();
-
-
+   
     //*********************DATE POP UP********************************************** */
     // JAVASCRIPT FOR CALENDAR
     $('#datetimepicker1').datepicker({
@@ -355,12 +379,6 @@ $(document).ready(function () {
 }); //DOC READY 
 
 /************************CHECKOUT PAGE************************************************* */
-//Global Variables 
-
-
-
-
-//Global function
 
 //adder
 function getSum(total, num) {
@@ -376,20 +394,7 @@ function copy(input) {
 
 
 //STEP 1 **********************************************************************************************
-//Customer information to firebase database 
 
-// Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyBz7O2sKtxxkxGVsSh9ICLOlMngDG058Mc",
-//     authDomain: "project1-group3.firebaseapp.com",
-//     databaseURL: "https://project1-group3.firebaseio.com",
-//     projectId: "project1-group3",
-//     storageBucket: "project1-group3.appspot.com",
-//     messagingSenderId: "50484590409"
-//   };
-//   firebase.initializeApp(config);
-
-//   var database = firebase.database();
 
 $("#payment").hide()
 
@@ -419,6 +424,7 @@ function cryptoPayment() {
     //Display 
     $("#payment").show();
     $("#form").hide();
+    //$(".order-review").hide();
 
 
     var paidButton = "<button class ='btn btn-primary'>Mark as Paid</button>"
@@ -460,10 +466,68 @@ function confirmed() {
     $(".progress-bar").attr({ "style": "width: 100%", "aria-valuenow": "100" })
 
 
-    $("#content").html("SUMMARY OF PURCHASE/INVOICE HERE" + "<br>" + "<br>" + "Thank you for your purchase. A confirmation email had been send to example@gmail.com. It will take up to 24hour.....blah blah")
+    $(".confirmationPage").show()
+    $(".order-details").show()
 
+    $(".booking-id").html("Booking-ID: " + bookingID)
 
-    //summary of purchase//
-    //shootout email to customer//
+    retrieve(bookingID);
+
+    //shootout email to customer//POST-MVP
 
 }
+
+//check bookings function
+function retrieve(ID){
+    
+    database.ref("/customers").on("child_added", function (childSnapshot) {
+
+        console.log(childSnapshot.key, ID)
+
+    if (childSnapshot.key = ID){
+
+        console.log("booking details appending")
+
+
+        $(".booked-heading").html("ID: ")
+        $(".booked-id").html(childSnapshot.key)
+
+        $(".booked-hotelname").html(childSnapshot.val().hName)
+        $(".booked-address").html(childSnapshot.val().hAddress)
+        $(".booked-checkin").html(childSnapshot.val().checkIn)
+        $(".booked-checkout").html(childSnapshot.val().checkOut)
+        $(".booked-payment").html((childSnapshot.val().bitPrice)+ " Bitcoins")
+        $(".booked-name").html((childSnapshot.val().firstName) + " " + (childSnapshot.val().lastName))
+        $(".booked-phone").html(childSnapshot.val().phone)
+        $(".booked-email").html(childSnapshot.val().email)
+    }
+
+    console.log("hotelname " + childSnapshot.val().hName )
+
+
+    
+    })
+
+}
+
+
+//check bookings button 
+ $("#SubmitIdBtn").on("click", function(){
+$("#findBooking").hide()
+$("#cbookings").show()
+
+
+
+//$(".confirmationPage").hide();
+
+   var customerInput = JSON.stringify($(".idBox").val().trim())
+
+   console.log("TEST" ,customerInput)
+  
+
+   retrieve(customerInput)
+
+});
+
+
+

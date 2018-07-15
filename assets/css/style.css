@@ -223,4 +223,14 @@ background-color:#222222;
 
 
 
+/** checkout **/
+
+#booking-heading {
+  width: 100%;
+}
+
+.booking-id {
+    font-size: 200%;
+}
+
 

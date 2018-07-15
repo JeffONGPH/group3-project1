@@ -319,7 +319,7 @@
 
 
 
-    <!-- START OF- VIEW PREVIOUS BOOKING- SECTION -->
+    <!-- VIEW PREVIOUS BOOKING- SECTION -->
 
     <section class="myBookings" id="findBooking">
         <div class="container">
@@ -337,7 +337,7 @@
 
                     </p>
 
-                    <a href="#" class="btn btn-primary pageButtons">Find My Booking</a>
+                    <a href="#" class="btn btn-primary pageButtons" id="SubmitIdBtn">Find My Booking</a>
                 </div>
             </div>
         </div>
@@ -377,16 +377,11 @@
 
 
 
-    <!-- START OF BUYER INFORMATION PAGE FOR PAYMENT -->
+    <!-- Checkout Pages -->
 
     <section class="checkoutPages">
         <div class="container">
-            <!--TEST AREA -->
-
-
-            <!--__-->
             <!--Progress-->
-
             <h2 id="steps">Checkout Progress</h2>
             <div class="progress" style="height: 30px;">
                 <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Customer Information</div>
@@ -396,7 +391,7 @@
             <div id="content" class="row col-md-12">
 
                 <!--Step 1-->
-                <div id="form">
+                <div id="form" class="col-md-12 row">
                     <form>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -449,8 +444,21 @@
                             <button type="submit" id="step1Button" class="btn btn-primary">Next Step</button>
                         </div>
                     </form>
+                    <!--ordrr review -->
+
+                    <div class="col-md-6 order-review">
+                        <h4>Order Summary</h4>
+                        <div id=order-cart>
+
+
+                        </div>
+                    </div>
+                    <!--ordrr review -->
                 </div>
+
+
                 <!--Step 2-->
+
                 <div id="payment">
 
                     <div id="qr"></div>
@@ -479,6 +487,90 @@
                     </div>
 
                 </div>
+                <!--End of Step 2-->
+
+
+                <!--Step 3 confirmation page-->
+                <section class="confirmationPage row">
+                    <div class="container">
+                        <div class="card confirmCard">
+                            <h5 class="card-header confirmHeading">You just made a booking!</h5>
+                            <h5 class="booking-id"></h5>
+                            <p class="card-text processPara">Please record for future reference </p>
+
+                            <div id="booking-heading">
+                                <h2>Booking details</h2>
+                            </div>
+
+                            <table class="order-details">
+
+                                <tr>
+
+                                    <th class="booked-heading"></th>
+                                    <td class="booked-id"></td>
+                                </tr>
+
+                                <tr>
+
+                                    <th>Hotel Name:</th>
+                                    <td class="booked-hotelname"></td>
+                                </tr>
+                                <tr>
+                                    <th>Hotel Address:</th>
+                                    <td class="booked-address"> </td>
+                                </tr>
+                                <tr>
+                                    <th>Check In Date:</th>
+                                    <td class="booked-checkin"></td>
+                                </tr>
+                                <tr>
+                                    <th>Check Out Date:</th>
+                                    <td class="booked-checkout"></td>
+                                </tr>
+                                <tr>
+                                    <th>Payment:</th>
+                                    <td class="booked-payment"></td>
+                                </tr>
+                                <tr>
+                                    <th>Name of guess:</th>
+                                    <td class="booked-name"></td>
+                                </tr>
+                                <tr>
+                                    <th>Phone:</th>
+                                    <td class="booked-phone"></td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td class="booked-email"></td>
+                                </tr>
+
+                            </table>
+
+
+
+
+
+
+
+
+
+
+                            <div class="card-body">
+                                <h5 class="card-title processMsg">We are processing your booking.</h5>
+                                <p class="card-text processPara">Kindly be patient while we do so. It may take 10 minutes or more to complete this process.
+                                    </p>
+                                <p class="card-text processPara">Your booking details are as follows. We will email you an offcial copy of the invoice once
+                                    the transaction is cleared.</p>
+                                <a href="#" class="btn btn-primary pageButtons backtoSearch">Search Again</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </section>
+
+
+
+
 
 
 
@@ -489,6 +581,7 @@
 
 
             </div>
+            <!--content-->
         </div>
 
 
@@ -502,32 +595,56 @@
 
     </section>
 
+    <!--Check bookings-->
+    <section id="cbookings">
+        <table class="order-details">
 
+            <tr>
 
+                <th class="booked-heading"></th>
+                <td class="booked-id"></td>
+            </tr>
 
+            <tr>
 
+                <th>Hotel Name:</th>
+                <td class="booked-hotelname"></td>
+            </tr>
+            <tr>
+                <th>Hotel Address:</th>
+                <td class="booked-address"> </td>
+            </tr>
+            <tr>
+                <th>Check In Date:</th>
+                <td class="booked-checkin"></td>
+            </tr>
+            <tr>
+                <th>Check Out Date:</th>
+                <td class="booked-checkout"></td>
+            </tr>
+            <tr>
+                <th>Payment:</th>
+                <td class="booked-payment"></td>
+            </tr>
+            <tr>
+                <th>Name of guess:</th>
+                <td class="booked-name"></td>
+            </tr>
+            <tr>
+                <th>Phone:</th>
+                <td class="booked-phone"></td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td class="booked-email"></td>
+            </tr>
 
-
-
-
-
-    <!-- START OF CONFIRMATION OF PAYMENT PAGE -->
-    <section class="confirmationPage">
-        <div class="container">
-            <div class="card confirmCard">
-                <h5 class="card-header confirmHeading">You just made a booking!</h5>
-                <div class="card-body">
-                    <h5 class="card-title processMsg">We are processing your booking.</h5>
-                    <p class="card-text processPara">Kindly be patient while we do so. It may take 10 minutes or more to complete this process. </p>
-                    <p class="card-text processPara">Page not refreshing? Please check your email for booking information.</p>
-                    <a href="#" class="btn btn-primary pageButtons backtoSearch">Search Again</a>
-                </div>
-            </div>
-        </div>
-
-
-
+        </table>
     </section>
+
+
+
+
 
 
 
@@ -563,15 +680,7 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js">
-
-
         // CALENDAR CHECK-IN DATE
-
-
-
-
-
-
     </script>
     <!-- JAVASCRIPT FOR GOOGLE MAPS API -->
     <script>
