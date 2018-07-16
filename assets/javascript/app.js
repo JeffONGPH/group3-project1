@@ -38,7 +38,7 @@ $(document).ready(function () {
     //$("#favouritesPage").append(localStorage.getItem("hotel-name") + localStorage.getItem("hotel-address") + localStorage.getItem("hotel-amenities") + localStorage.getItem("hotel-price") + "<br>")
     $("#myFavourites").hide();
     $("#cbookings").hide()
-
+   
     //Remove all favourites data
     database.ref("/favourites").remove();
     // EVENT LISTENER FOR ABOUT PAGE AND CONTACT US PAGE
@@ -55,7 +55,7 @@ $(document).ready(function () {
         $("#cbookings").hide()
     })
 
-    function backToSearch () {$(".backtoSearch").on("click", function () {
+    function backToSearch (){
         $(".heading").show();
         $(".searchBoxes").show();
         $("#about").hide();
@@ -66,13 +66,20 @@ $(document).ready(function () {
         $("#findBooking").hide();
         $(".confirmationPage").hide();
         $("#cbookings").hide()
+ 
+
+    }
+
+$(document).on("click",".backtoSearch", function () {
+        backToSearch ()
     })
-}
 
-backToSearch ()
 
-$(".cancelButton").on("click", function(){
+$(document).on("click", ".cancelButton",function(event){
+    console.log("workin")
+    event.preventDefault();
     backToSearch ()
+
 })
 
 
@@ -264,9 +271,9 @@ $(".cancelButton").on("click", function(){
                 itemPrices.push(itemPrice)
                 console.log("itemPrice", itemPrice, "itemPrices", itemPrices)
 
+                $(".checkoutPages").show()
                 $(".displayResults").hide()
                 $(".searchBoxes").hide()
-                $(".checkoutPages").show()
                 $(".order-details").hide()
 
                 //order review column 
@@ -297,11 +304,12 @@ $(".cancelButton").on("click", function(){
             $(document).on("click", ".add-favourite", function () {
                 $("#myFavourites").show();
                 $("#nofav").hide()
+             
 
                 //totalFavs++;
                 var k = $(this).attr("data-value");
 
-                var favPrice = JSON.parse($(this).closest("tr").children("td.five").text())
+                //var favPrice = JSON.parse($(this).closest("tr").children("td.five").text())
 
                 // localStorage.setItem("hotel-name", results[k].property_name);
                 // localStorage.setItem("hotel-address", results[k].address.line1);
@@ -309,29 +317,28 @@ $(".cancelButton").on("click", function(){
                 // localStorage.setItem("hotel-price", results[k].total_price.amount);
                 // localStorage.setItem("hotel-bitprice", favPrice);
 
+
                 database.ref("/favourites/" + k).set({
                     name: results[k].property_name,
                     address: results[k].address.line1,
                     amenities: results[k].amenities[Math.floor(Math.random() * 4) + 1].description,
                     price: results[k].total_price.amount,
                     bitprice: JSON.parse($(this).closest("tr").children("td.five").text()),
-                    dataAttr: k,
+                    dataAttr: k
                 });
 
             });
 
             // Access each time a fav is added, only reference specific one
-            database.ref("/favourites//").on("child_added", function (snapshot) {
-                
-            console.log(snapshot.val().dataAttr)
+            database.ref("/favourites///").on("child_added", function (childSnapshot) {
                 var newRow = $("<tr>").append(
-                    $("<button>").text("Remove Favourite").addClass("remove-favourite").attr("data-info", (snapshot.val().dataAttr) * 0.1),
-                    $("<td class='one'>").text(snapshot.val().name),
-                    $("<td class='two'>").text(snapshot.val().address),
-                    $("<td class='three'>").text(snapshot.val().amenities),
-                    $("<td class='four'>").text(snapshot.val().price),
-                    $("<td class='five'>").text(snapshot.val().bitprice),
-                    $("<button class='book'>").text("Book").attr("data-value", (snapshot.val().dataAttr))
+                    $("<button>").text("Remove Favourite").addClass("remove-favourite").attr("data-info", (childSnapshot.val().dataAttr) * 0.1),
+                    $("<td class='one'>").text(childSnapshot.val().name),
+                    $("<td class='two'>").text(childSnapshot.val().address),
+                    $("<td class='three'>").text(childSnapshot.val().amenities),
+                    $("<td class='four'>").text(childSnapshot.val().price),
+                    $("<td class='five'>").text(childSnapshot.val().bitprice),
+                    $("<button class='book'>").text("Book").attr("data-value", (childSnapshot.val().dataAttr))
                 );
                 console.log(newRow);
                 $("#favTable").show()
