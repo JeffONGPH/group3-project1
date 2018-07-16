@@ -55,7 +55,7 @@ $(document).ready(function () {
         $("#cbookings").hide()
     })
 
-    $(".backtoSearch").on("click", function () {
+    function backToSearch () {$(".backtoSearch").on("click", function () {
         $(".heading").show();
         $(".searchBoxes").show();
         $("#about").hide();
@@ -65,9 +65,15 @@ $(document).ready(function () {
         $("#myFavourites").hide();
         $("#findBooking").hide();
         $(".confirmationPage").hide();
-
         $("#cbookings").hide()
     })
+}
+
+backToSearch ()
+
+$(".cancelButton").on("click", function(){
+    backToSearch ()
+})
 
 
     $("#contactapp").on("click", function () {
@@ -103,7 +109,10 @@ $(document).ready(function () {
     $("#star").on("click", function () {
         $("#myFavourites").show();
         $("#about").hide();
+
+
         $("#contact").hide();
+
 
 
     })
