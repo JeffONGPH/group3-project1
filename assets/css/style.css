@@ -4,13 +4,18 @@
     }
 
     html{
-    font-size:62.5%;
-        
-    }
+        font-size:62.5%;
+        position: relative;
+        min-height: 100%;
+    
+            
+        }
 
-    body{
-    font-size:1.6rem;
-    }
+      
+      body{
+        font-size:1.6rem;
+        margin-bottom: 60px; /* Margin bottom by footer height */
+        }
 
     .wrapper{
     margin:0 auto;
@@ -31,13 +36,16 @@ header{
 }
 
 .heading{
-    background-image: url("../images/hotel-view.jpg");
+    background-image: url("../images/hotel-view.jpg"); 
     background-repeat: no-repeat;
     background-position: right;
     background-size:cover;
     min-width:113%;
     height:500px;
+
+   
 }
+
 
 .navbar{
     padding:7px;
@@ -77,9 +85,9 @@ header{
 
 .welcomeMsg{
     text-align: center;
-    border:5px solid #ffffff !important;
-    border-color:  #ffffff !important;
-    color:  #ffffff !important;
+    border:5px solid whitesmoke !important;
+    border-color:  whitesmoke !important;
+    color:  whitesmoke !important;
     padding:5px;
     font-size:3rem;
     line-height: 50px;
@@ -90,7 +98,7 @@ header{
 
 .lead{
     font-family: 'Roboto', sans-serif;
-    color:  #ffffff;
+    color:  whitesmoke;
     font-size: 1.5rem;
     font-weight: 600;
     text-align:center;
@@ -134,12 +142,13 @@ header{
     margin-top:80px;
 }
 
-
-
-
-
-
-
+.selectd {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 3%;
+}
 
 /* PREVIOUS BOOKING STYLING BEGINS */
 .form-control.IdBox{
@@ -159,8 +168,6 @@ header{
 
 }
 
-
-
 /* FAVOURITES SECTION STYLING BEGINS */
 .add-favourite{
     background-color:lightseagreen;
@@ -178,7 +185,7 @@ header{
 }
 
 .add-favourite:hover{
-    background-color:darkgreen;
+    background-color:blanchedalmond;
 }
 
 /* CONFIRMATION PAGE STYLES BEGINS */
@@ -275,9 +282,9 @@ width: 100%
 /** CHECKOUT END **/
 
 
-
 .order-details{
     width:100%;
+    margin-bottom: 12px;
 }
 
 tr {
@@ -292,4 +299,18 @@ footer, .footerCard{
     .footerIcon, .card-header{
         color:#ffffff;
     }
+    
+        .footerIcon, span{
+            color:#ffffff;
+        }
+        /* sticky footer style */
+          footer {
+            text-align:center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px; /* Set the fixed height of the footer here */
+            line-height: 60px; /* Vertically center the text there */
+            
+          }
     
