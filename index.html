@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,12 +23,9 @@
     <!-- Javascript -->
     <!-- <script src="assets/javascript/app.js"></script> -->
 </head>
-
 <body>
 
     <!-- START OF MAIN PAGE -->
-
-
     <header class="heading">
         <div class="container navContainer">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,19 +54,13 @@
                                 <i class="fas fa-search" ></i>
                             </a>
                         </li>
-
                     </ul>
                 </div>
-
             </nav>
-
         </div>
-
         </div>
-
         </nav>
         </div>
-
         <section class="subHeading">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
@@ -80,18 +70,15 @@
                         <a href="#searchHotel" class="btn btn-primary btn-lg pageButtons backtoSearch" role="button" id="toSearch">Get Started</a>
                         <a href="#findBooking" class="btn btn-primary btn-lg pageButtons gotobook" role="button">My Booking</a>
                     </p>
-
                 </div>
             </div>
-
         </section>
     </header>
 
 
-
+<!--SearchBox-->
     <section class="searchBoxes" id="searchHotel">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-success">
@@ -101,16 +88,10 @@
                                                 <h2 style="text-align: center;">Select Your Destination</h2>
                                             </div>
                             <div class="col-lg-6 panel-heading">
-                           
                                 <p>Find your perfect hotel, anywhere in the world</p>
                             </div>
-
-                            <!-- <div class="col-lg-6 error-message">
-                                    <p id="error">*Insert error message here*</p>
-                                </div> -->
                         </div>
                         <div class="panel-body">
-
                             <div class="row">
                                 <!-- row1   -->
                                 <div class="col-md-12">
@@ -188,10 +169,6 @@
     </section>
 
 
-
-
-
-
     <!-- START OF RESULTS PAGE -->
 
     <section class="displayResults ">
@@ -265,11 +242,7 @@
     </section>
 
 
-
-
     <!-- START OF ABOUT US SECTION -->
-
-
     <section class="aboutUs" id="about">
         <div class="container">
             <div class="card confirmCard">
@@ -295,8 +268,6 @@
                 </div>
             </div>
         </div>
-
-
     </section>
 
     <section class="contactUs" id="contact">
@@ -316,15 +287,9 @@
                 </div>
             </div>
         </div>
-
-
     </section>
 
-
-
-
     <!-- VIEW PREVIOUS BOOKING- SECTION -->
-
     <section class="myBookings" id="findBooking">
         <div class="container">
             <div class="card confirmCard">
@@ -341,20 +306,13 @@
 
                     </p>
 
-                    <a href="#" class="btn btn-primary pageButtons" id="SubmitIdBtn">Find My Booking</a>
+                    <a  href="#findBooking" class="btn btn-primary pageButtons" id="SubmitIdBtn">Find My Booking</a>
                 </div>
             </div>
         </div>
 
-
     </section>
-
-
-
-
-
     <!-- START OF FAVOURITES PAGE -->
-
     <section class="favouritesPage" id="myFavourites">
         <h1 id="nofav" style="text-align:center">You have not added any favourites. Click get started!</h1>
         <div class="container">
@@ -378,12 +336,7 @@
 
         </div>
     </section>
-
-
-
-
     <!-- Checkout Pages -->
-
     <section class="checkoutPages">
         <div class="container">
             <!--Progress-->
@@ -461,12 +414,9 @@
                         <a href="index.html" style=" margin-top: 5px; font-size:10%; color:grey ">Cancel Bookings</a>
                     </div>
                   
-                    <!--ordrr review -->
+                    <!--order review -->
 
-                  
                 </div>
-
-
                 <!--Step 2-->
 
                 <div id="payment">
@@ -498,8 +448,6 @@
 
                 </div>
                 <!--End of Step 2-->
-
-
                 <!--Step 3 confirmation page-->
                 <section class="confirmationPage row">
                     <div class="container">
@@ -557,14 +505,6 @@
                             </table>
 
 
-
-
-
-
-
-
-
-
                             <div class="card-body">
                                 <h5 class="card-title processMsg">We are processing your booking.</h5>
                                 <p class="card-text processPara">Kindly be patient while we do so. It may take 10 minutes or more to complete this process.
@@ -578,43 +518,21 @@
                     <br>
                 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
             <!--content-->
         </div>
-
-
-
-
-
-
-
-
         </div>
-
     </section>
 
     <!--Check bookings-->
     <section id="cbookings">
         <div>
+            <br>
+            <br>
                 <div class="booking-id"></div>
                 <br>
                 <br>
         <table class="order-details">
-
-           
-         
 
             <tr>
 
@@ -657,13 +575,6 @@
         </table>
     </div>
     </section>
-
-
-
-
-
-
-
     <!-- START OF FOOTER -->
 
     <footer>
@@ -686,7 +597,7 @@
         crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/app.js">
+    <script id="jsfile" type="text/javascript" src="assets/javascript/app.js">
         // CALENDAR CHECK-IN DATE
     </script>
     <!-- JAVASCRIPT FOR GOOGLE MAPS API -->
@@ -699,12 +610,6 @@
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         }
     </script>
-
-
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQAQ2E2a26DB2truUkiBNbUayz8yGDglg&callback=myMap"></script>
 </body>
-
-
-
 </html>

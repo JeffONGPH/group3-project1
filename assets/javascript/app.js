@@ -360,12 +360,8 @@ $(document).ready(function () {
                 database.ref("/favourites/" + kten).remove()
 
             });
-
         }
-
         //favourites end
-
-
     } //$object
 
 
@@ -495,7 +491,7 @@ $(document).ready(function () {
     //*********************END OF DATE POP UP********************************************** */  
 }); //DOC READY 
 
-/************************CHECKOUT PAGE************************************************* */
+/************************CHECKOUT PAGEs************************************************* */
 
 //adder
 function getSum(total, num) {
@@ -594,19 +590,16 @@ function confirmed() {
         "aria-valuenow": "100"
     })
 
-
     $(".confirmationPage").show()
     $(".order-details").show()
 
-
-
-    retrieve(bookingID);
-
-    //shootout email to customer//POST-MVP
-
+   retrieve(bookingID);
 }
 
-//check bookings function
+
+//***********************************RETRIEVE BOOKINGS********************************************************
+//check bookings function//
+
 function retrieve(ID) {
 
     $(".booking-id").empty()
@@ -623,17 +616,17 @@ function retrieve(ID) {
 
     database.ref("/customers").child(ID).once("value", function (snapshot) {
         console.log("childvalue ", snapshot.val())
-
         var object = JSON.stringify(snapshot.val())
-
         console.log("object", object)
 
         if (object === "null") {
 
-            $("#cbookings").html("<h1 style='margin-top: 25px; color:red;'>Your booking do not exist. Check you ID and try again.</h1>")
-
+            $(".booking-id").prepend("<div class='row'><h1 style='margin-top: 25px; color:red;'>Your booking do not exist. Check you ID and try again.</h1></div>")
+            $(".order-details").hide()
         }
         if (object !== "null") {
+
+            $(".order-details").show()
 
             $(".booking-id").html("<h1><strong>Booking-ID: " + ID + "</strong></h1>")
 
@@ -648,6 +641,7 @@ function retrieve(ID) {
             $(".booked-name").html((snapshot.val().firstName) + " " + (snapshot.val().lastName))
             $(".booked-phone").html(snapshot.val().phone)
             $(".booked-email").html(snapshot.val().email)
+
         }
     });
 }
@@ -668,3 +662,5 @@ $("#SubmitIdBtn").on("click", function () {
     }
 });
 //check bookings button
+
+//END
