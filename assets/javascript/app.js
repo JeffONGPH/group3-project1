@@ -109,6 +109,12 @@ $(".cancelButton").on("click", function(){
     $("#star").on("click", function () {
         $("#myFavourites").show();
         $("#about").hide();
+
+
+        $("#contact").hide();
+
+
+
     })
 
     //checkout process

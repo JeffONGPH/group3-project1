@@ -167,6 +167,10 @@ header {
     color: white;
 }
 
+.favsec {
+    margin-bottom: 5%;
+}
+
 .favouriteHeading {
     font-size: 2rem;
     font-family: 'Lato', sans-serif;
@@ -259,7 +263,6 @@ h2 {
     background-color: turquoise;
     color: mintcream;
     font-size: 18px;
-    padding-top: 5px;
 }
 
 .btcDisplay {
