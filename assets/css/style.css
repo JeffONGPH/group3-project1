@@ -1,145 +1,135 @@
 * {
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-    
-    }
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-    html{
-        font-size:62.5%;
-        position: relative;
-        min-height: 100%;
-    
-            
-        }
+html {
+    font-size: 62.5%;
+    position: relative;
+    min-height: 100%;
+}
 
-      
-      body{
-        font-size:1.6rem;
-        margin-bottom: 60px; /* Margin bottom by footer height */
-        }
+body {
+    font-size: 1.6rem;
+    margin-bottom: 60px;
+    /* Margin bottom by footer height */
+}
 
-    .wrapper{
-    margin:0 auto;
+.wrapper {
+    margin: 0 auto;
 }
 
 /* HEADING STYLE BEGIN */
 
-.navContainer{
-    min-width:71%;
+.navContainer {
+    min-width: 71%;
 }
 
-.container{
-    position:relative;
+.container {
+    position: relative;
 }
 
-header{
-    position:relative;
+header {
+    position: relative;
 }
 
-.heading{
-    background-image: url("../images/hotel-view.jpg"); 
+.heading {
+    background-image: url("../images/hotel-view.jpg");
     background-repeat: no-repeat;
     background-position: right;
-    background-size:cover;
-    min-width:113%;
-    height:500px;
-
-   
+    background-size: cover;
+    min-width: 113%;
+    height: 500px;
 }
 
-
-.navbar{
-    padding:7px;
-    position:absolute;
-    top:20px;
-    left:3px;
-    width:87%;
-
+.navbar {
+    padding: 7px;
+    position: absolute;
+    top: 20px;
+    left: 3px;
+    width: 87%;
 }
 
-.nav-link a{
-    font-family:'Lato', sans-serif;
+.nav-link a {
+    font-family: 'Lato', sans-serif;
     text-transform: uppercase;
 }
 
-.far, .fas{
-    color:rgba(0,0,0,.5);
+.far,
+.fas {
+    color: rgba(0, 0, 0, .5);
 }
-
-
 
 /* subheading styles */
 
-
-
-.subHeading{
-    position:absolute;
-    top:50%;
-    left:46%;
+.subHeading {
+    position: absolute;
+    top: 50%;
+    left: 46%;
     transform: translate(-60%, -40%);
 }
 
-.jumbotron{
-    background-color:transparent !important;
-    
+.jumbotron {
+    background-color: transparent !important;
 }
 
-.welcomeMsg{
+.welcomeMsg {
     text-align: center;
-    border:5px solid whitesmoke !important;
-    border-color:  whitesmoke !important;
-    color:  whitesmoke !important;
-    padding:5px;
-    font-size:3rem;
+    border: 5px solid whitesmoke !important;
+    border-color: whitesmoke !important;
+    color: whitesmoke !important;
+    padding: 5px;
+    font-size: 3rem;
     line-height: 50px;
     text-transform: uppercase;
-    font-weight:bolder;
-
+    font-weight: bolder;
 }
 
-.lead{
+.lead {
     font-family: 'Roboto', sans-serif;
-    color:  whitesmoke;
+    color: whitesmoke;
     font-size: 1.5rem;
     font-weight: 600;
-    text-align:center;
+    text-align: center;
 }
 
-.nav-item{
-    margin-right:50px;
+.nav-item {
+    margin-right: 50px;
 }
 
-
-.pageButtons{
-    font-size:1.7rem;
-    margin-bottom:8px;
-    margin-right:10px;
-    background-color:lightseagreen;
+.pageButtons {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+    margin-right: 10px;
+    background-color: lightseagreen;
     font-family: 'Lato', sans-serif;
-    border:1px solid lightseagreen;
-
+    border: 1px solid lightseagreen;
 }
 
-.pageButtons{
+.pageButtons {
     font-family: 'Lato', sans-serif;
-    color:  #ffffff !important;
+    color: #ffffff !important;
     font-size: 1.3rem;
     font-weight: 400;
     line-height: 20px;
-    text-transform:uppercase;
-    letter-spacing:3px;
-
-    
-    
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
-
 
 /* HEADING STYLE ENDS */
 
-
-
 /* SEARCHBOXES STYLE BEGINS */
- .searchBoxes, .displayResults, .myBookings, .favouritesPage, .buyerInformation, .aboutUs, .contactUs, .confirmationPage{
-    margin-top:80px;
+
+.searchBoxes,
+.displayResults,
+.myBookings,
+.favouritesPage,
+.buyerInformation,
+.aboutUs,
+.contactUs,
+.confirmationPage {
+    margin-top: 80px;
 }
 
 .selectd {
@@ -151,79 +141,82 @@ header{
 }
 
 /* PREVIOUS BOOKING STYLING BEGINS */
-.form-control.IdBox{
-    margin:0 auto;
+
+
+.form-control.IdBox {
+    margin: 0 auto;
     width: 50%;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* ABOUT US PAGE STYLING */
-.aboutText{
-    font-family:'Lato', sans-serif;
-    font-size:2rem;
-    text-align:justify;
-    line-height:1.7em;
-    margin-bottom:35px;
 
+.aboutText {
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem;
+    text-align: justify;
+    line-height: 1.7em;
+    margin-bottom: 35px;
 }
 
 /* FAVOURITES SECTION STYLING BEGINS */
-.add-favourite{
-    background-color:lightseagreen;
-    color:white;
+
+.add-favourite {
+    background-color: lightseagreen;
+    color: white;
 }
 
-.favouriteHeading{
-    font-size:2rem;
+.favouriteHeading {
+    font-size: 2rem;
     font-family: 'Lato', sans-serif;
     background-color: lightseagreen;
     padding: 20px;
     color: white;
     text-align: center;
-    font-weight:bold;
+    font-weight: bold;
 }
 
-.add-favourite:hover{
-    background-color:blanchedalmond;
+.add-favourite:hover {
+    background-color: blanchedalmond;
 }
 
 /* CONFIRMATION PAGE STYLES BEGINS */
-.confirmCard{
-    text-align:center;
-    margin-bottom:30px;
+
+.confirmCard {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.processPara{
-    margin-bottom:25px;
-    font-size:1.7rem;
+.processPara {
+    margin-bottom: 25px;
+    font-size: 1.7rem;
 }
-.confirmHeading{
+
+.confirmHeading {
     color: white;
     font-size: 2rem;
-    background-color:lightseagreen;
+    background-color: lightseagreen;
     padding: 20px;
     text-align: center;
 }
 
-.processMsg{
+.processMsg {
     font-size: 2rem;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-#cbookings{
+#cbookings {
     display: flex;
     align-content: center;
     justify-content: center;
-
 }
-
 
 /** CHECKOUT **/
 
 #booking-heading {
-  width: 100%;
+    width: 100%;
 }
 
 .booking-id {
@@ -232,58 +225,72 @@ header{
 }
 
 /** CHECKOUT **/
-.button-container, #qr ,#bitAddress ,#instruction, #content, #form, .btcDisplay{
+#form{
+    margin-top: 7%;
+}
+
+.button-container,
+#qr,
+#bitAddress,
+#instruction,
+#content,
+#form,
+.btcDisplay {
     display: flex;
     align-content: center;
     justify-content: center;
-   
 }
 
-.button-container{
-    margin-top:10px;
+.button-container {
+    margin-top: 10px;
 }
 
-#form , #payment {
-width: 100%
+#form,
+#payment {
+    width: 100%
 }
 
-#form, h2{text-align:center;}
+#form,
+h2 {
+    text-align: center;
+}
 
-
-.progress-bar{
-    background-color:turquoise;
+.progress-bar {
+    background-color: turquoise;
     color: mintcream;
     font-size: 18px;
-    padding-top: 5px;}
-
-.btcDisplay{
-    margin:10px;
+    padding-top: 5px;
 }
 
-#bitAddress, #totalPrice {
+.btcDisplay {
+    margin: 10px;
+}
+
+#bitAddress,
+#totalPrice {
     width: 60%;
     margin-left: 5px;
     margin-right: 5px;
 }
 
-.btcDisplay-wrapper{
-    margin-bottom:40px;
+.btcDisplay-wrapper {
+    margin-bottom: 40px;
 }
 
 #steps {
-    font-size:200%;
+    font-size: 200%;
 }
 
 .customButton {
-    background-color:violet;
-    padding:5px 25px;
-    font-size:20px;
+    background-color: violet;
+    padding: 5px 25px;
+    font-size: 20px;
 }
+
 /** CHECKOUT END **/
 
-
-.order-details{
-    width:100%;
+.order-details {
+    width: 100%;
     margin-bottom: 12px;
 }
 
@@ -292,25 +299,31 @@ tr {
 }
 
 /* FOOTER STYLE BEGINS */
-footer, .footerCard{
-    background-color:#222222;
-    }
-    
-    .footerIcon, .card-header{
-        color:#ffffff;
-    }
-    
-        .footerIcon, span{
-            color:#ffffff;
-        }
-        /* sticky footer style */
-          footer {
-            text-align:center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 60px; /* Set the fixed height of the footer here */
-            line-height: 60px; /* Vertically center the text there */
-            
-          }
-    
+
+footer,
+.footerCard {
+    background-color: #222222;
+}
+
+.footerIcon,
+.card-header {
+    color: #ffffff;
+}
+
+.footerIcon,
+span {
+    color: #ffffff;
+}
+
+/* sticky footer style */
+
+footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Set the fixed height of the footer here */
+    line-height: 60px;
+    /* Vertically center the text there */
+}
