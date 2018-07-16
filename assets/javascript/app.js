@@ -109,12 +109,7 @@ $(".cancelButton").on("click", function(){
     $("#star").on("click", function () {
         $("#myFavourites").show();
         $("#about").hide();
-
-
         $("#contact").hide();
-
-
-
     })
 
     //checkout process
@@ -178,7 +173,6 @@ $(".cancelButton").on("click", function(){
             //get bookingID 
 
             database.ref("/customers").limitToLast(1).on("child_added", function (snapshot) {
-
                 bookingID = snapshot.key
                 console.log("bookingID", bookingID)
             });
@@ -194,9 +188,7 @@ $(".cancelButton").on("click", function(){
     });
 
     function bitcoinCall() {
-
         var bitcoinURL = "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,CAD";
-
         $.ajax({
             url: bitcoinURL,
             method: "GET"
@@ -210,7 +202,6 @@ $(".cancelButton").on("click", function(){
 
 
     var $object = {
-
         queryHotels: function (destination, checkInDate, checkOutDate, cryptoCurrency) {
             var hotelURL = "https://api.sandbox.amadeus.com/v1.2/hotels/search-airport?apikey=8ymHpM55MRMoy1BSJLjLZidGdZr3nbVc&location=" +
                 destination + "&check_in=" + checkInDate + "&check_out=" + checkOutDate + "&number_of_results=10";
@@ -272,7 +263,6 @@ $(".cancelButton").on("click", function(){
 
 
                 itemPrices.push(itemPrice)
-
                 console.log("itemPrice", itemPrice, "itemPrices", itemPrices)
 
                 $(".displayResults").hide()
@@ -501,7 +491,7 @@ $(".cancelButton").on("click", function(){
     //*********************END OF DATE POP UP********************************************** */  
 }); //DOC READY 
 
-/************************CHECKOUT PAGEs************************************************* */
+/************************CHECKOUT PAGES************************************************* */
 
 //adder
 function getSum(total, num) {
@@ -671,6 +661,6 @@ $("#SubmitIdBtn").on("click", function () {
         alert("please type in you booking ID!")
     }
 });
-//check bookings button
+//check bookings button ends
 
 //END
