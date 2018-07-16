@@ -248,7 +248,7 @@ $(".cancelButton").on("click", function(){
 
             }
             // Book buttons
-            $('.book').on("click", function (event) {
+            $(document).on("click", ".book",function (event) {
                 console.log('book')
                 event.preventDefault();
                 $("#myFavourites").hide();
@@ -293,12 +293,12 @@ $(".cancelButton").on("click", function(){
         },
         //favourites
         addFavourites: function () {
-            var totalFavs = 0;
+            //var totalFavs = 0;
             $(document).on("click", ".add-favourite", function () {
                 $("#myFavourites").show();
                 $("#nofav").hide()
 
-                totalFavs++;
+                //totalFavs++;
                 var k = $(this).attr("data-value");
 
                 var favPrice = JSON.parse($(this).closest("tr").children("td.five").text())
@@ -323,14 +323,15 @@ $(".cancelButton").on("click", function(){
             // Access each time a fav is added, only reference specific one
             database.ref("/favourites//").on("child_added", function (snapshot) {
                 
+            console.log(snapshot.val().dataAttr)
                 var newRow = $("<tr>").append(
                     $("<button>").text("Remove Favourite").addClass("remove-favourite").attr("data-info", (snapshot.val().dataAttr) * 0.1),
-                    $("<td>").text(snapshot.val().name),
-                    $("<td>").text(snapshot.val().address),
-                    $("<td>").text(snapshot.val().amenities),
-                    $("<td>").text(snapshot.val().price),
-                    $("<td>").text(snapshot.val().bitprice),
-                    $("<button class='book'>").text("Book").attr("data-value", snapshot.val().dataAttr)
+                    $("<td class='one'>").text(snapshot.val().name),
+                    $("<td class='two'>").text(snapshot.val().address),
+                    $("<td class='three'>").text(snapshot.val().amenities),
+                    $("<td class='four'>").text(snapshot.val().price),
+                    $("<td class='five'>").text(snapshot.val().bitprice),
+                    $("<button class='book'>").text("Book").attr("data-value", (snapshot.val().dataAttr))
                 );
                 console.log(newRow);
                 $("#favTable").show()
