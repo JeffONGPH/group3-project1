@@ -103,6 +103,7 @@ $(document).ready(function () {
     $("#star").on("click", function () {
         $("#myFavourites").show();
         $("#about").hide();
+        $("#contact").hide();
 
 
     })
