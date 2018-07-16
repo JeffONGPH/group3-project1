@@ -240,7 +240,6 @@ $(".cancelButton").on("click", function(){
                     $("<td class='three'>").text(results[j].amenities[0].description),
                     $("<td class='four'>").text(results[j].total_price.amount),
                     $("<td class='five'>").text(((results[j].total_price.amount) / usDollar).toFixed(5)),
-                    //ADDED 
                     $("<button class='book'>").text("Book").attr("data-value", j)
 
                 );
@@ -323,19 +322,15 @@ $(".cancelButton").on("click", function(){
 
             // Access each time a fav is added, only reference specific one
             database.ref("/favourites//").on("child_added", function (snapshot) {
-                console.log('on child_added')
-                //$("#favTable").empty();
-
-                console.log("TEST", snapshot.val().bitprice)
-
-
+                
                 var newRow = $("<tr>").append(
                     $("<button>").text("Remove Favourite").addClass("remove-favourite").attr("data-info", (snapshot.val().dataAttr) * 0.1),
                     $("<td>").text(snapshot.val().name),
                     $("<td>").text(snapshot.val().address),
                     $("<td>").text(snapshot.val().amenities),
                     $("<td>").text(snapshot.val().price),
-                    $("<td>").text(snapshot.val().bitprice)
+                    $("<td>").text(snapshot.val().bitprice),
+                    $("<button class='book'>").text("Book").attr("data-value", snapshot.val().dataAttr)
                 );
                 console.log(newRow);
                 $("#favTable").show()
